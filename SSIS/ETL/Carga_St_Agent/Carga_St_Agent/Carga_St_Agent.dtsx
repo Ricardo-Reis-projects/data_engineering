@@ -1,0 +1,807 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2019 1:41:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GMODE-13"
+  DTS:CreatorName="GMODE-13\GMODE-13"
+  DTS:DTSID="{7DF8A0CA-49D4-4C5C-BEE8-2A3A4ED8FDDD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Carga_St_Agent"
+  DTS:PackageType="5"
+  DTS:VersionBuild="152"
+  DTS:VersionGUID="{EEC03912-AB2D-43EE-8DE0-3399B503E5A2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExcelAgent]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{76044A43-AC5C-4112-92A9-3015F6DE69D2}"
+      DTS:ObjectName="ExcelAgent">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\AGENT.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES;IMEX=1&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SanSumgBiConn]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{ABE4C7C9-49D4-457F-BC13-DB4A4A206A1F}"
+      DTS:ObjectName="SanSumgBiConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_SAMSUNG;Integrated Security=True;Application Name=SSIS-Carga_St_RMA_BASE-{ABE4C7C9-49D4-457F-BC13-DB4A4A206A1F}LocalHost.DB_SAMSUNG1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{4BAF2B79-83AF-449C-A35F-2EDF0100C0D4}"
+      DTS:ObjectName="IdArquivoMIS">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">43</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A73DDD4-96C4-49E9-B84E-C04FC46467F2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdLog">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87F5D506-42EA-4FF8-87EC-74C641515D8E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NomeArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{49CB2674-00FE-4464-83BD-05B45159E0F0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PathArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\carga St_Agent"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{898ECC3A-648B-4662-BBFA-0FBE8CED2797}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="carga St_Agent"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\carga St_Agent\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; Â© Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."St_Agent"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\carga St_Agent\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SanSumgBiConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[SanSumgBiConn]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[EXPERT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EXPERT_ID"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[EXPERT_ID]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[EXPERT_ID]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[START_TYPE_CD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="START_TYPE_CD"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_TYPE_CD]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TYPE_CD]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[START_DT]"
+                      cachedDataType="date"
+                      cachedName="START_DT"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_DT]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_DT]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[START_TIME]"
+                      cachedDataType="date"
+                      cachedName="START_TIME"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TIME]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[END_TYPE_CD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="END_TYPE_CD"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_TYPE_CD]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TYPE_CD]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[END_DT]"
+                      cachedDataType="date"
+                      cachedName="END_DT"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_DT]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_DT]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[END_TIME]"
+                      cachedDataType="date"
+                      cachedName="END_TIME"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TIME]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DURATION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DURATION"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DURATION]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION]" />
+                    <inputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DURATION_TIME]"
+                      cachedDataType="date"
+                      cachedName="DURATION_TIME"
+                      externalMetadataColumnId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DURATION_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION_TIME]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[EXPERT_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EXPERT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      name="START_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_DT]"
+                      dataType="wstr"
+                      length="255"
+                      name="START_DT" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[START_TIME]"
+                      dataType="wstr"
+                      length="255"
+                      name="START_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      name="END_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_DT]"
+                      dataType="wstr"
+                      length="255"
+                      name="END_DT" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[END_TIME]"
+                      dataType="wstr"
+                      length="255"
+                      name="END_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DURATION]"
+                      dataType="wstr"
+                      length="255"
+                      name="DURATION" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DURATION_TIME]"
+                      dataType="wstr"
+                      length="255"
+                      name="DURATION_TIME" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\carga St_Agent\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\carga St_Agent\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\carga St_Agent\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\carga St_Agent\ExcelAgent"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="ExcelAgent"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">base$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\carga St_Agent\ExcelAgent.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ExcelAgent]"
+                  connectionManagerRefId="Package.ConnectionManagers[ExcelAgent]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[EXPERT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[EXPERT_ID]"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[EXPERT_ID]"
+                      name="EXPERT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TYPE_CD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_TYPE_CD]"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TYPE_CD]"
+                      name="START_TYPE_CD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_DT]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_DT]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_DT]"
+                      name="START_DT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TIME]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[START_TIME]"
+                      name="START_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TYPE_CD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_TYPE_CD]"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TYPE_CD]"
+                      name="END_TYPE_CD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_DT]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_DT]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_DT]"
+                      name="END_DT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TIME]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[END_TIME]"
+                      name="END_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[DURATION]"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION]"
+                      name="DURATION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION_TIME]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[DURATION_TIME]"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].Columns[DURATION_TIME]"
+                      name="DURATION_TIME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[EXPERT_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EXPERT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      name="START_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_DT]"
+                      dataType="date"
+                      name="START_DT" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[START_TIME]"
+                      dataType="date"
+                      name="START_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      name="END_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_DT]"
+                      dataType="date"
+                      name="END_DT" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[END_TIME]"
+                      dataType="date"
+                      name="END_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[DURATION]"
+                      dataType="wstr"
+                      length="255"
+                      name="DURATION" />
+                    <externalMetadataColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output].ExternalColumns[DURATION_TIME]"
+                      dataType="date"
+                      name="DURATION_TIME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[EXPERT_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[EXPERT_ID]"
+                      name="EXPERT_ID" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_TYPE_CD]"
+                      name="START_TYPE_CD" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_DT]"
+                      dataType="date"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_DT]"
+                      name="START_DT" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_TIME]"
+                      dataType="date"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[START_TIME]"
+                      name="START_TIME" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_TYPE_CD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_TYPE_CD]"
+                      name="END_TYPE_CD" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_DT]"
+                      dataType="date"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_DT]"
+                      name="END_DT" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_TIME]"
+                      dataType="date"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[END_TIME]"
+                      name="END_TIME" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[DURATION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[DURATION]"
+                      name="DURATION" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[DURATION_TIME]"
+                      dataType="date"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[DURATION_TIME]"
+                      name="DURATION_TIME" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\carga St_Agent.Paths[Excel Source Output]"
+              endId="Package\carga St_Agent\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\carga St_Agent\ExcelAgent.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Finaliza Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Finaliza Processamento"
+      DTS:DTSID="{6763830E-9255-4538-B8CE-9B0C626F0075}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Finaliza Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_07067945e58f4be29464fdb2e165dfee"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inicia Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{4C6DFDE4-23A9-4528-A26A-84B6E81729FF}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicia Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_90603f124c7a44d39106b0e46405f9ab"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpa tabela Staging st_Agent"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C22332B-197F-4CE9-B184-46A9E6898A58}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpa tabela Staging st_Agent"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ABE4C7C9-49D4-457F-BC13-DB4A4A206A1F}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table st_Agent" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{407C94F8-C738-4679-BC04-6A5E39D6086C}"
+      DTS:From="Package\Inicia Processamento"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Limpa tabela Staging st_Agent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0D563AD3-BB2D-4319-8DCF-485FFCFB26E9}"
+      DTS:From="Package\Limpa tabela Staging st_Agent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\carga St_Agent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5AF17173-3828-45A5-8263-5D1EEA6ED3FF}"
+      DTS:From="Package\carga St_Agent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Finaliza Processamento" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\carga St_Agent"
+          TopLeft="405.944438389369,323.69608003293" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Finaliza Processamento"
+          TopLeft="382.119053198367,440.728757121296" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Inicia Processamento"
+          TopLeft="400.944438389369,119.696080032929" />
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\Limpa tabela Staging st_Agent"
+          TopLeft="360.444438389369,221.696080032929" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="490.544438389369,161.296080032929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.9,60.4"
+              Start="0,0"
+              End="-18.9,52.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.2"
+                    Point2="0,30.2"
+                    Point3="-4,30.2" />
+                  <mssgle:LineSegment
+                    End="-14.9,30.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.9,30.2"
+                    Point2="-18.9,30.2"
+                    Point3="-18.9,34.2" />
+                  <mssgle:LineSegment
+                    End="-18.9,52.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="471.644438389369,263.296080032929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,60.400000000001"
+              Start="0,0"
+              End="9.5,52.900000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2000000000005" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.2000000000005"
+                    Point2="0,30.2000000000005"
+                    Point3="4,30.2000000000005" />
+                  <mssgle:LineSegment
+                    End="5.5,30.2000000000005" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,30.2000000000005"
+                    Point2="9.5,30.2000000000005"
+                    Point3="9.5,34.2000000000005" />
+                  <mssgle:LineSegment
+                    End="9.5,52.900000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="478.431745793868,365.29608003293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75.4326770883659"
+              Start="0,0"
+              End="0,67.9326770883659">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.9326770883659" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\carga St_Agent">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\carga St_Agent\ExcelAgent"
+          TopLeft="351,39" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\carga St_Agent\ADO NET Destination"
+          TopLeft="332.571434235086,315.670592662455" />
+        <EdgeLayout
+          Id="Package\carga St_Agent.Paths[Excel Source Output]"
+          TopLeft="418.985717117543,80.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,235.070592662455"
+              Start="0,0"
+              End="0,227.570592662455">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,227.570592662455" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\carga St_Agent\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\carga St_Agent\ExcelAgent">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

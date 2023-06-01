@@ -1,0 +1,2146 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/9/2019 11:55:51 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A549043"
+  DTS:CreatorName="ATENTOBR\est_ab1314754"
+  DTS:DTSID="{DD99AC6B-2202-4FEC-A227-C63F5A154A3B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="04_CARGA_VOCS_REPORT"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{96482AC4-3174-44FD-BCD9-370731944217}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB_SAMSUNG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D13BC87B-D00C-4637-B30A-850B73791B29}"
+      DTS:ObjectName="DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=brsbesrv960;Initial Catalog=DB_SAMSUNG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VOCS_REPORT3]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{0761C75E-50AC-42F5-9BCC-AB93FAA9F9BD}"
+      DTS:ObjectName="VOCS_REPORT3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\BRSBESRV960\Publico\SAMSUNG\CargasETLs\VOCS_REPORT3.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8482105A-5347-47D1-8C7E-55FF283AD27D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::v_diretorio]+ replace((DT_WSTR, 10) (DT_DBDATE)getdate(),&quot;-&quot;,&quot;&quot;)+&quot;_&quot;+ @[User::v_filename]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_destination">
+      <DTS:VariableValue
+        DTS:DataType="8">\\BRSBESRV960\Publico\SAMSUNG\CargasETLs\Historico\20191219_VOCS_REPORT3.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1F19E1B7-304F-4A89-A52B-16AAAB87D188}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_diretorio">
+      <DTS:VariableValue
+        DTS:DataType="8">\\BRSBESRV960\Publico\SAMSUNG\CargasETLs\Historico\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9959B8E5-97FC-4E69-86D8-4994F836DE70}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_filename">
+      <DTS:VariableValue
+        DTS:DataType="8">VOCS_REPORT3.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D34DA2E9-6E3D-453E-8390-5EC8160FAE89}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_source">
+      <DTS:VariableValue
+        DTS:DataType="8">\\BRSBESRV960\Publico\SAMSUNG\CargasETLs\VOCS_REPORT3.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\LACO_IMPORT_EXCEL"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Contêiner do Loop Foreach"
+      DTS:DTSID="{7D877D87-85C3-4FCC-849B-8F784AB59CEE}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LACO_IMPORT_EXCEL">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{C39BDEA0-C76A-44C5-ABB6-8067C57AF21A}"
+        DTS:ObjectName="{C39BDEA0-C76A-44C5-ABB6-8067C57AF21A}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\BRSBESRV960\Publico\SAMSUNG\CargasETLs" />
+            <FEFEProperty
+              FileSpec="VOCS_REPORT3.xlsx" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\COPY"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{73350B15-65C4-4F74-A485-DA61F886557D}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="COPY"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::v_source"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::v_destination"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\DELETE"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{AD3C8C4F-3A4D-4DC0-9CAF-1716E1D2389A}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DELETE"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskSourcePath="User::v_source"
+              TaskIsSourceVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{EDBF44B2-53F4-4CBB-84A1-3251B8E46CAE}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="IMPORT_TB_STG_SAMS_VOCS_REPORT3"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origem do Excel"
+                  name="CONEXAO_VOCS_REPORT3"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="O mapeamento de parâmetros no comando SQL para variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[VOCS_REPORT3]"
+                      connectionManagerRefId="Package.ConnectionManagers[VOCS_REPORT3]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel]"
+                      name="Saída de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ref# Ticket]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Ref# Ticket]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ref# Ticket]"
+                          name="Ref# Ticket"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type]"
+                          name="Claim Type"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type Desc]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc]"
+                          name="Claim Type Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ticket No#]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Ticket No#]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ticket No#]"
+                          name="Ticket No#"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Posting Date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Posting Date]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Posting Date]"
+                          name="Posting Date"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Process Type]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type]"
+                          name="Process Type"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Process Type Desc]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type Desc]"
+                          name="Process Type Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Detail Type]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type]"
+                          name="Detail Type"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Detail Type1]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type1]"
+                          name="Detail Type1"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Service Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Service Type]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Service Type]"
+                          name="Service Type"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Status]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Status Desc]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status Desc]"
+                          name="Status Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type1]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type1]"
+                          name="Claim Type1"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type Desc1]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc1]"
+                          name="Claim Type Desc1"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Solution]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution]"
+                          name="Solution"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Solution Desc]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution Desc]"
+                          name="Solution Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Sub Solution]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution]"
+                          name="Sub Solution"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Sub Solution Desc]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution Desc]"
+                          name="Sub Solution Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Complete Date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Complete Date]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Complete Date]"
+                          name="Complete Date"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Serial No]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Serial No]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Serial No]"
+                          name="Serial No"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[ASC Code]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Code]"
+                          name="ASC Code"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[ASC Name]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Name]"
+                          name="ASC Name"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Link Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Link Type]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Link Type]"
+                          name="Link Type"
+                          truncationRowDisposition="IgnoreFailure" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Ref# Ticket]"
+                          dataType="wstr"
+                          length="255"
+                          name="Ref# Ticket" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Claim Type" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type Desc]"
+                          dataType="wstr"
+                          length="255"
+                          name="Claim Type Desc" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Ticket No#]"
+                          dataType="wstr"
+                          length="255"
+                          name="Ticket No#" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Posting Date]"
+                          dataType="date"
+                          name="Posting Date" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Process Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Process Type" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Process Type Desc]"
+                          dataType="wstr"
+                          length="255"
+                          name="Process Type Desc" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Detail Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Detail Type" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Detail Type1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Detail Type1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Service Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Service Type" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Status]"
+                          dataType="wstr"
+                          length="255"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Status Desc]"
+                          dataType="wstr"
+                          length="255"
+                          name="Status Desc" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Claim Type1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Claim Type Desc1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Claim Type Desc1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Solution]"
+                          dataType="wstr"
+                          length="255"
+                          name="Solution" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Solution Desc]"
+                          dataType="wstr"
+                          length="255"
+                          name="Solution Desc" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Sub Solution]"
+                          dataType="wstr"
+                          length="255"
+                          name="Sub Solution" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Sub Solution Desc]"
+                          dataType="wstr"
+                          length="255"
+                          name="Sub Solution Desc" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Complete Date]"
+                          dataType="date"
+                          name="Complete Date" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Serial No]"
+                          dataType="wstr"
+                          length="255"
+                          name="Serial No" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[ASC Code]"
+                          dataType="wstr"
+                          length="255"
+                          name="ASC Code" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[ASC Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="ASC Name" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].ExternalColumns[Link Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Link Type" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Ref# Ticket]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Ref# Ticket]"
+                          name="Ref# Ticket" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type]"
+                          name="Claim Type" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type Desc]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type Desc]"
+                          name="Claim Type Desc" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Ticket No#]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Ticket No#]"
+                          name="Ticket No#" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Posting Date]"
+                          dataType="date"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Posting Date]"
+                          name="Posting Date" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Process Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Process Type]"
+                          name="Process Type" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Process Type Desc]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Process Type Desc]"
+                          name="Process Type Desc" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Detail Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Detail Type]"
+                          name="Detail Type" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Detail Type1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Detail Type1]"
+                          name="Detail Type1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Service Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Service Type]"
+                          name="Service Type" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Status]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Status Desc]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Status Desc]"
+                          name="Status Desc" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type1]"
+                          name="Claim Type1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type Desc1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Claim Type Desc1]"
+                          name="Claim Type Desc1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Solution]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Solution]"
+                          name="Solution" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Solution Desc]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Solution Desc]"
+                          name="Solution Desc" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Sub Solution]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Sub Solution]"
+                          name="Sub Solution" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Sub Solution Desc]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Sub Solution Desc]"
+                          name="Sub Solution Desc" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Complete Date]"
+                          dataType="date"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Complete Date]"
+                          name="Complete Date" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Serial No]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Serial No]"
+                          name="Serial No" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ASC Code]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ASC Code]"
+                          name="ASC Code" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ASC Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ASC Name]"
+                          name="ASC Name" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Link Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[Link Type]"
+                          name="Link Type" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversão de Dados"
+                  name="Conversão de Dados"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                      name="Entrada de Conversão de Dados">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Ref# Ticket]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Ref# Ticket"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ref# Ticket]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Claim Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Claim Type"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Claim Type Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Claim Type Desc"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Ticket No#]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Ticket No#"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ticket No#]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Posting Date]"
+                          cachedDataType="date"
+                          cachedName="Posting Date"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Posting Date]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Process Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Process Type"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Process Type Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Process Type Desc"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type Desc]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Detail Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Detail Type"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Detail Type1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Detail Type1"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Service Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Service Type"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Service Type]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Status]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Status"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Status Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Status Desc"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status Desc]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Claim Type1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Claim Type1"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Claim Type Desc1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Claim Type Desc1"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Solution]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Solution"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Solution Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Solution Desc"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution Desc]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Sub Solution]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Sub Solution"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Sub Solution Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Sub Solution Desc"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution Desc]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Complete Date]"
+                          cachedDataType="date"
+                          cachedName="Complete Date"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Complete Date]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Serial No]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Serial No"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Serial No]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[ASC Code]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ASC Code"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Code]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[ASC Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ASC Name"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Name]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Link Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Link Type"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Link Type]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                      exclusionGroup="1"
+                      name="Saída de Conversão de Dados"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_REF_TICKET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_REF_TICKET]"
+                          name="NM_REF_TICKET"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ref# Ticket]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_1]"
+                          name="NM_CLAIM_TYPE_1"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_1]"
+                          name="NM_CLAIM_TYPE_DESC_1"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_TICKET_NO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_TICKET_NO]"
+                          name="NM_TICKET_NO"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Ticket No#]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_POSTING_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_POSTING_DATE]"
+                          name="NM_POSTING_DATE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Posting Date]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE]"
+                          name="NM_PROCESS_TYPE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE_DESC]"
+                          name="NM_PROCESS_TYPE_DESC"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Process Type Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_1]"
+                          name="NM_DETAIL_TYPE_1"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_2]"
+                          name="NM_DETAIL_TYPE_2"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Detail Type1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERVICE_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERVICE_TYPE]"
+                          name="NM_SERVICE_TYPE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Service Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS]"
+                          name="NM_STATUS"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS_DESC]"
+                          name="NM_STATUS_DESC"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Status Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_2]"
+                          name="NM_CLAIM_TYPE_2"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_2]"
+                          name="NM_CLAIM_TYPE_DESC_2"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Claim Type Desc1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION]"
+                          name="NM_SOLUTION"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION_DESC]"
+                          name="NM_SOLUTION_DESC"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Solution Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION]"
+                          name="NM_SUB_SOLUTION"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION_DESC]"
+                          name="NM_SUB_SOLUTION_DESC"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Sub Solution Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_COMPLETE_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_COMPLETE_DATE]"
+                          name="NM_COMPLETE_DATE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Complete Date]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERIAL_NO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERIAL_NO]"
+                          name="NM_SERIAL_NO"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Serial No]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_CODE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_CODE]"
+                          name="NM_ASC_CODE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Code]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_NAME]"
+                          name="NM_ASC_NAME"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[ASC Name]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_LINK_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_LINK_TYPE]"
+                          name="NM_LINK_TYPE"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel].Columns[Link Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Conversão de Dados"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="TB_STG_SAMS_VOCS_REPORT"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[TB_STG_SAMS_VOCS_REPORT]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DB_SAMSUNG]"
+                      connectionManagerRefId="Package.ConnectionManagers[DB_SAMSUNG]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="IgnoreFailure"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_REF_TICKET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_REF_TICKET"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_REF_TICKET]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_REF_TICKET]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_CLAIM_TYPE_1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_CLAIM_TYPE_1"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_1]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_CLAIM_TYPE_DESC_1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_CLAIM_TYPE_DESC_1"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_DESC_1]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_TICKET_NO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_TICKET_NO"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_TICKET_NO]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_TICKET_NO]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_POSTING_DATE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_POSTING_DATE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_POSTING_DATE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_POSTING_DATE]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_PROCESS_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_PROCESS_TYPE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROCESS_TYPE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_PROCESS_TYPE_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_PROCESS_TYPE_DESC"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROCESS_TYPE_DESC]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_PROCESS_TYPE_DESC]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_DETAIL_TYPE_1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_DETAIL_TYPE_1"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_DETAIL_TYPE_1]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_1]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_DETAIL_TYPE_2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_DETAIL_TYPE_2"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_DETAIL_TYPE_2]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_DETAIL_TYPE_2]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SERVICE_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SERVICE_TYPE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SERVICE_TYPE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERVICE_TYPE]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_STATUS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_STATUS"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_STATUS]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_STATUS_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_STATUS_DESC"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_STATUS_DESC]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_STATUS_DESC]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_CLAIM_TYPE_2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_CLAIM_TYPE_2"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_2]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_2]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_CLAIM_TYPE_DESC_2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_CLAIM_TYPE_DESC_2"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_DESC_2]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_CLAIM_TYPE_DESC_2]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SOLUTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SOLUTION"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SOLUTION]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SOLUTION_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SOLUTION_DESC"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SOLUTION_DESC]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SOLUTION_DESC]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SUB_SOLUTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SUB_SOLUTION"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SUB_SOLUTION]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SUB_SOLUTION_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SUB_SOLUTION_DESC"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SUB_SOLUTION_DESC]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SUB_SOLUTION_DESC]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_COMPLETE_DATE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_COMPLETE_DATE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_COMPLETE_DATE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_COMPLETE_DATE]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_SERIAL_NO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_SERIAL_NO"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SERIAL_NO]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_SERIAL_NO]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_ASC_CODE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_ASC_CODE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ASC_CODE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_CODE]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_ASC_NAME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_ASC_NAME"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ASC_NAME]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ASC_NAME]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].Columns[NM_LINK_TYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_LINK_TYPE"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_LINK_TYPE]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_LINK_TYPE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_REF_TICKET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_REF_TICKET" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_CLAIM_TYPE_1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_DESC_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_CLAIM_TYPE_DESC_1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_TICKET_NO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_TICKET_NO" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_POSTING_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_POSTING_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROCESS_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_PROCESS_TYPE" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROCESS_TYPE_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_PROCESS_TYPE_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_DETAIL_TYPE_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_DETAIL_TYPE_1" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_DETAIL_TYPE_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_DETAIL_TYPE_2" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SERVICE_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SERVICE_TYPE" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_STATUS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_STATUS" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_STATUS_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_STATUS_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_CLAIM_TYPE_2" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CLAIM_TYPE_DESC_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_CLAIM_TYPE_DESC_2" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SOLUTION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SOLUTION" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SOLUTION_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SOLUTION_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SUB_SOLUTION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SUB_SOLUTION" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SUB_SOLUTION_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SUB_SOLUTION_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_COMPLETE_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_COMPLETE_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SERIAL_NO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_SERIAL_NO" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ASC_CODE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_ASC_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ASC_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_ASC_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_LINK_TYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_LINK_TYPE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3.Paths[Saída de Conversão de Dados]"
+                  endId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Conversão de Dados"
+                  startId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+                <path
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3.Paths[Saída de Origem do Excel]"
+                  endId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Saída de Origem do Excel"
+                  startId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3.Outputs[Saída de Origem do Excel]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{F978C86F-9B25-4A06-9A99-D02B2DED4C3B}"
+          DTS:From="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\LACO_IMPORT_EXCEL\COPY" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{494824A0-3346-412C-9F65-1532FBD2AF6E}"
+          DTS:From="Package\LACO_IMPORT_EXCEL\COPY"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 1"
+          DTS:To="Package\LACO_IMPORT_EXCEL\DELETE" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8C3BA3E7-B1EC-4E13-B903-9E4732B80673}"
+          DTS:ObjectName="{8C3BA3E7-B1EC-4E13-B903-9E4732B80673}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::v_source" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE_TB_STG_SAMS_VOCS_REPORT"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{3F6F243D-8B78-441F-9066-E5D7BEA391C8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE_TB_STG_SAMS_VOCS_REPORT"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D13BC87B-D00C-4637-B30A-850B73791B29}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.TB_STG_SAMS_VOCS_REPORT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{46E9CE7E-7B9D-4748-8171-6CD6F770E77A}"
+      DTS:From="Package\TRUNCATE_TB_STG_SAMS_VOCS_REPORT"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\LACO_IMPORT_EXCEL" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="107,42"
+          Id="Package\LACO_IMPORT_EXCEL\COPY"
+          TopLeft="172,96" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\LACO_IMPORT_EXCEL\DELETE"
+          TopLeft="186,182" />
+        <NodeLayout
+          Size="278,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3"
+          TopLeft="81,14" />
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição]"
+          TopLeft="222.75,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição 1]"
+          TopLeft="225.5,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,44"
+              Start="0,0"
+              End="19.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="15.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,22"
+                    Point2="19.5,22"
+                    Point3="19.5,26" />
+                  <mssgle:LineSegment
+                    End="19.5,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="440,279"
+          Size="440,322"
+          Id="Package\LACO_IMPORT_EXCEL"
+          TopLeft="329,33" />
+        <NodeLayout
+          Size="286,42"
+          Id="Package\TRUNCATE_TB_STG_SAMS_VOCS_REPORT"
+          TopLeft="0,8" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="286,29">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,165"
+              Start="0,0"
+              End="35.5,165">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.5,0"
+                    Point2="21.5,0"
+                    Point3="21.5,4" />
+                  <mssgle:LineSegment
+                    End="21.5,161" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5,161"
+                    Point2="21.5,165"
+                    Point3="25.5,165" />
+                  <mssgle:LineSegment
+                    End="35.5,165" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="228,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT"
+          TopLeft="454,155" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3"
+          TopLeft="175,26" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\Conversão de Dados"
+          TopLeft="323,87" />
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3.Paths[Saída de Origem do Excel]"
+          TopLeft="386,47">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,40"
+              Start="0,0"
+              End="26,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,0"
+                    Point2="26,0"
+                    Point3="26,4" />
+                  <mssgle:LineSegment
+                    End="26,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3.Paths[Saída de Conversão de Dados]"
+          TopLeft="412,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="156,26"
+              Start="0,0"
+              End="156,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="4,13" />
+                  <mssgle:LineSegment
+                    End="152,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="152,13"
+                    Point2="156,13"
+                    Point3="156,17" />
+                  <mssgle:LineSegment
+                    End="156,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\TB_STG_SAMS_VOCS_REPORT">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_VOCS_REPORT3\CONEXAO_VOCS_REPORT3">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>PRJ_CARGA_CMS</Name>
+    <LastWriteTime>2019-11-19T21:23:44.1568026Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01.dtsx</Name>
+      <LastWriteTime>2019-11-21T20:32:18.0856997Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_02.dtsx</Name>
+      <LastWriteTime>2019-11-21T21:13:32.5112604Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

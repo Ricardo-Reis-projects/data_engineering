@@ -1,0 +1,1903 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2019 1:41:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GMODE-13"
+  DTS:CreatorName="GMODE-13\GMODE-13"
+  DTS:DTSID="{03FF6CDD-B562-42A6-A170-5D0353497C6F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Carga_St_RMA_BASE"
+  DTS:PackageType="5"
+  DTS:VersionBuild="151"
+  DTS:VersionGUID="{ACBC8BC4-C207-46EF-9169-49763C78E1E2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RMA_BASE]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{50FE76A8-F131-4D12-9E05-17A1DE9FFF33}"
+      DTS:ObjectName="RMA_BASE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\RMA_BASE.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES;IMEX=1&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SanSumgBiConn]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{705E39DA-51B4-47C3-A34E-73D2DD3E9F7E}"
+      DTS:ObjectName="SanSumgBiConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=brsbesrv960;Initial Catalog=DB_SAMSUNG;Integrated Security=True;Application Name=SSIS-Carga_St_RMA_BASE-{705E39DA-51B4-47C3-A34E-73D2DD3E9F7E}LocalHost.DB_SAMSUNG1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{164E9F43-C758-474F-8B03-1C5493F9D326}"
+      DTS:ObjectName="IdArquivoMIS">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">47</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4A7EEC01-BDFD-456A-92EF-F8689085BB3F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdLog">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CD597D4C-728D-4D81-BB5E-B7F438689590}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NomeArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FA84A4C3-F5C3-41D6-8244-D1E8408140F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PathArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\carga RMA_BASE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{478EE3CD-0AAA-47E0-898D-9AB821FD8063}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="carga RMA_BASE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\carga RMA_BASE\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; Â© Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."st_RMA_BASE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\carga RMA_BASE\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SanSumgBiConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[SanSumgBiConn]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Model]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Model"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Model]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Model]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ASC Code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ASC Code"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Code]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Code]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ASC Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ASC Name"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Name]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Name]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[City]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Posting Date]"
+                      cachedDataType="date"
+                      cachedName="Posting Date"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Posting Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Posting Date]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SVC Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SVC Status"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SVC Status]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SVC Status Desc]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SVC Status Desc"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SVC Status Desc]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status Desc]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ASC Rcv Date]"
+                      cachedDataType="date"
+                      cachedName="ASC Rcv Date"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Rcv Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Rcv Date]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[TAT]"
+                      cachedDataType="r8"
+                      cachedName="TAT"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[TAT]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[TAT]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Serial No]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Serial No"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Serial No]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Serial No]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Consumer]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Consumer"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Consumer]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Consumer]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[First Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="First Name"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[First Name]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[First Name]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Last Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Last Name"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Last Name]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Last Name]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Tel No]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tel No"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Tel No]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Tel No]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Unique ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Unique ID"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Unique ID]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Unique ID]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[District]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="District"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[District]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[District]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Street]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Street]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Postal Code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postal Code"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Postal Code]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Postal Code]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[HC Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HC Status"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Status]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Status]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[HC Remark]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HC Remark"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Remark]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Remark]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[HC Date]"
+                      cachedDataType="date"
+                      cachedName="HC Date"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Date]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[HC Agent ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HC Agent ID"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Agent ID]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent ID]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[HC Agent BP]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HC Agent BP"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Agent BP]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent BP]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Status"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Remark]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Remark"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Date]"
+                      cachedDataType="date"
+                      cachedName="Previous Date"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Agent]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Agent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Status2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Status2"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status2]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status2]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Remark2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Remark2"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark2]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark2]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Date2]"
+                      cachedDataType="date"
+                      cachedName="Previous Date2"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date2]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date2]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Agent2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Agent2"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent2]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent2]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Status3]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Status3"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status3]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status3]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Remark3]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Remark3"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark3]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark3]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Date3]"
+                      cachedDataType="date"
+                      cachedName="Previous Date3"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date3]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date3]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Previous Agent3]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Previous Agent3"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent3]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent3]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Responsavel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Responsavel"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Responsavel]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Responsavel]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DT_BASE]"
+                      cachedDataType="date"
+                      cachedName="DT_BASE"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_BASE]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_BASE]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ST_NOME_ARQ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ST_NOME_ARQ"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ST_NOME_ARQ]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ST_NOME_ARQ]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DT_INCLUSAO]"
+                      cachedDataType="date"
+                      cachedName="DT_INCLUSAO"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_INCLUSAO]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_INCLUSAO]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Company]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Company"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Company]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Company]" />
+                    <inputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Ticket No]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ticket No"
+                      externalMetadataColumnId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Ticket No/]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Ticket No]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Ticket No/]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ticket No/" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Posting Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Posting Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SVC Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="SVC Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SVC Status Desc]"
+                      dataType="wstr"
+                      length="255"
+                      name="SVC Status Desc" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Rcv Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="ASC Rcv Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[TAT]"
+                      dataType="wstr"
+                      length="255"
+                      name="TAT" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Model]"
+                      dataType="wstr"
+                      length="255"
+                      name="Model" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Serial No]"
+                      dataType="wstr"
+                      length="255"
+                      name="Serial No" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="ASC Code" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ASC Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="ASC Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Consumer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Consumer" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[First Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="First Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Last Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Tel No]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tel No" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Unique ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Unique ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[District]"
+                      dataType="wstr"
+                      length="255"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Postal Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Remark]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Remark" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Agent ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Agent ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[HC Agent BP]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Agent BP" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Date2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Status3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Remark3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Date3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Date3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Previous Agent3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Responsavel]"
+                      dataType="wstr"
+                      length="255"
+                      name="Responsavel" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_BASE]"
+                      dataType="wstr"
+                      length="255"
+                      name="DT_BASE" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ST_NOME_ARQ]"
+                      dataType="wstr"
+                      length="255"
+                      name="ST_NOME_ARQ" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_INCLUSAO]"
+                      dataType="wstr"
+                      length="255"
+                      name="DT_INCLUSAO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\carga RMA_BASE\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\carga RMA_BASE\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\carga RMA_BASE\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\carga RMA_BASE\RMA_BASE"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="RMA_BASE"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">base$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\carga RMA_BASE\RMA_BASE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RMA_BASE]"
+                  connectionManagerRefId="Package.ConnectionManagers[RMA_BASE]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Model]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Model]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Model]"
+                      name="Model"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Code]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Code]"
+                      name="ASC Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Name]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Name]"
+                      name="ASC Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[City]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Posting Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Posting Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Posting Date]"
+                      name="Posting Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Ticket No]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Ticket No/]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Ticket No]"
+                      name="Ticket No"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[SVC Status]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status]"
+                      name="SVC Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status Desc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[SVC Status Desc]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[SVC Status Desc]"
+                      name="SVC Status Desc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Rcv Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Rcv Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ASC Rcv Date]"
+                      name="ASC Rcv Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[TAT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[TAT]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[TAT]"
+                      name="TAT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Serial No]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Serial No]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Serial No]"
+                      name="Serial No"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Consumer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Consumer]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Consumer]"
+                      name="Consumer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[First Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[First Name]"
+                      name="First Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Last Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Last Name]"
+                      name="Last Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Tel No]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Tel No/]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Tel No]"
+                      name="Tel No"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Unique ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Unique ID]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Unique ID]"
+                      name="Unique ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[District]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[District]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[District]"
+                      name="District"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Street]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Street]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Street]"
+                      name="Street"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Postal Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Postal Code]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Postal Code]"
+                      name="Postal Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Status]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Status]"
+                      name="HC Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Remark]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Remark]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Remark]"
+                      name="HC Remark"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Date]"
+                      name="HC Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Agent ID]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent ID]"
+                      name="HC Agent ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent BP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Agent BP]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[HC Agent BP]"
+                      name="HC Agent BP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status]"
+                      name="Previous Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark]"
+                      name="Previous Remark"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date]"
+                      name="Previous Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent]"
+                      name="Previous Agent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status2]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status2]"
+                      name="Previous Status2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark2]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark2]"
+                      name="Previous Remark2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date2]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date2]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date2]"
+                      name="Previous Date2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent2]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent2]"
+                      name="Previous Agent2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status3]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Status3]"
+                      name="Previous Status3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark3]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Remark3]"
+                      name="Previous Remark3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date3]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date3]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Date3]"
+                      name="Previous Date3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent3]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Previous Agent3]"
+                      name="Previous Agent3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Responsavel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Responsavel]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Responsavel]"
+                      name="Responsavel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_BASE]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[DT_BASE]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_BASE]"
+                      name="DT_BASE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ST_NOME_ARQ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ST_NOME_ARQ]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[ST_NOME_ARQ]"
+                      name="ST_NOME_ARQ"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_INCLUSAO]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[DT_INCLUSAO]"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[DT_INCLUSAO]"
+                      name="DT_INCLUSAO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Company]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Company]"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].Columns[Company]"
+                      name="Company"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Posting Date]"
+                      dataType="date"
+                      name="Posting Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Model]"
+                      dataType="wstr"
+                      length="255"
+                      name="Model" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="ASC Code" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="ASC Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Ticket No/]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ticket No/" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[SVC Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="SVC Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[SVC Status Desc]"
+                      dataType="wstr"
+                      length="255"
+                      name="SVC Status Desc" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ASC Rcv Date]"
+                      dataType="date"
+                      name="ASC Rcv Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[TAT]"
+                      dataType="r8"
+                      name="TAT" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Serial No]"
+                      dataType="wstr"
+                      length="255"
+                      name="Serial No" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Consumer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Consumer" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="First Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Tel No/]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tel No/" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Unique ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Unique ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[District]"
+                      dataType="wstr"
+                      length="255"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Postal Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Remark]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Remark" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Date]"
+                      dataType="date"
+                      name="HC Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Agent ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Agent ID" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[HC Agent BP]"
+                      dataType="wstr"
+                      length="255"
+                      name="HC Agent BP" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date]"
+                      dataType="date"
+                      name="Previous Date" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date2]"
+                      dataType="date"
+                      name="Previous Date2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent2" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Status3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Status3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Remark3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Remark3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Date3]"
+                      dataType="date"
+                      name="Previous Date3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Previous Agent3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Previous Agent3" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[Responsavel]"
+                      dataType="wstr"
+                      length="255"
+                      name="Responsavel" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[DT_BASE]"
+                      dataType="date"
+                      name="DT_BASE" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[ST_NOME_ARQ]"
+                      dataType="wstr"
+                      length="255"
+                      name="ST_NOME_ARQ" />
+                    <externalMetadataColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output].ExternalColumns[DT_INCLUSAO]"
+                      dataType="date"
+                      name="DT_INCLUSAO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Ticket No/]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Ticket No/]"
+                      name="Ticket No/" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[SVC Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[SVC Status]"
+                      name="SVC Status" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[SVC Status Desc]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[SVC Status Desc]"
+                      name="SVC Status Desc" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Rcv Date]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Rcv Date]"
+                      name="ASC Rcv Date" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[TAT]"
+                      dataType="r8"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[TAT]"
+                      name="TAT" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Model]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Model]"
+                      name="Model" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Serial No]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Serial No]"
+                      name="Serial No" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Code]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Code]"
+                      name="ASC Code" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ASC Name]"
+                      name="ASC Name" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Consumer]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Consumer]"
+                      name="Consumer" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[First Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[First Name]"
+                      name="First Name" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Last Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Last Name]"
+                      name="Last Name" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Tel No/]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Tel No/]"
+                      name="Tel No/" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Unique ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Unique ID]"
+                      name="Unique ID" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[District]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[District]"
+                      name="District" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Street]"
+                      name="Street" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Postal Code]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Postal Code]"
+                      name="Postal Code" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Status]"
+                      name="HC Status" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Remark]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Remark]"
+                      name="HC Remark" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Date]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Date]"
+                      name="HC Date" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Agent ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Agent ID]"
+                      name="HC Agent ID" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Agent BP]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[HC Agent BP]"
+                      name="HC Agent BP" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status]"
+                      name="Previous Status" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark]"
+                      name="Previous Remark" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date]"
+                      name="Previous Date" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent]"
+                      name="Previous Agent" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status2]"
+                      name="Previous Status2" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark2]"
+                      name="Previous Remark2" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date2]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date2]"
+                      name="Previous Date2" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent2]"
+                      name="Previous Agent2" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Status3]"
+                      name="Previous Status3" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Remark3]"
+                      name="Previous Remark3" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date3]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Date3]"
+                      name="Previous Date3" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Previous Agent3]"
+                      name="Previous Agent3" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Responsavel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Responsavel]"
+                      name="Responsavel" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[DT_BASE]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[DT_BASE]"
+                      name="DT_BASE" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ST_NOME_ARQ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[ST_NOME_ARQ]"
+                      name="ST_NOME_ARQ" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[DT_INCLUSAO]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[DT_INCLUSAO]"
+                      name="DT_INCLUSAO" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Posting Date]"
+                      dataType="date"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Posting Date]"
+                      name="Posting Date" />
+                    <outputColumn
+                      refId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Error Output].Columns[Company]"
+                      name="Company" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\carga RMA_BASE.Paths[Excel Source Output]"
+              endId="Package\carga RMA_BASE\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\carga RMA_BASE\RMA_BASE.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Finaliza Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Finaliza Processamento"
+      DTS:DTSID="{DDBACFDF-9E3F-4BC2-A5E9-19E82579C00B}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Finaliza Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_9338d225f77f4a6a9f697abc84f67bd0"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inicia Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{3E48CB36-7DF1-4C20-B631-4D48D0E2E5CF}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicia Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_7350eb6d266d4167af0f6ae48c9456ec"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpa tabela Staging st_RMA_Base"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4D4BF8D1-8877-45A8-B327-FE8130F1BD77}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpa tabela Staging st_RMA_Base"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{705E39DA-51B4-47C3-A34E-73D2DD3E9F7E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table st_RMA_BASE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E5C1596A-33C6-475F-8D6C-4A7F8C52EF40}"
+      DTS:From="Package\Inicia Processamento"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Limpa tabela Staging st_RMA_Base" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D51BE04F-804D-49E3-9EE9-2E98EDD839E6}"
+      DTS:From="Package\Limpa tabela Staging st_RMA_Base"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\carga RMA_BASE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3AE7DC8-18A6-4EF7-B773-B5F3586F7C94}"
+      DTS:From="Package\carga RMA_BASE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Finaliza Processamento" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\carga RMA_BASE"
+          TopLeft="405.944438389369,323.69608003293" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Finaliza Processamento"
+          TopLeft="382.119053198367,440.728757121296" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Inicia Processamento"
+          TopLeft="400.944438389369,119.696080032929" />
+        <NodeLayout
+          Size="255.2,41.6"
+          Id="Package\Limpa tabela Staging st_RMA_Base"
+          TopLeft="360.444438389369,221.696080032929" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="489.194438389369,161.696080032929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="489.194438389369,263.696080032929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="490.344438389369,365.29608003293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6253851910022,75.4326770883666"
+              Start="0,0"
+              End="-14.6253851910022,67.9326770883666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.7163385441833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.7163385441833"
+                    Point2="0,37.7163385441833"
+                    Point3="-4,37.7163385441833" />
+                  <mssgle:LineSegment
+                    End="-10.6253851910022,37.7163385441833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6253851910022,37.7163385441833"
+                    Point2="-14.6253851910022,37.7163385441833"
+                    Point3="-14.6253851910022,41.7163385441833" />
+                  <mssgle:LineSegment
+                    End="-14.6253851910022,67.9326770883666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\carga RMA_BASE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\carga RMA_BASE\ADO NET Destination"
+          TopLeft="332.571434235086,315.670592662455" />
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\carga RMA_BASE\RMA_BASE"
+          TopLeft="351,39" />
+        <EdgeLayout
+          Id="Package\carga RMA_BASE.Paths[Excel Source Output]"
+          TopLeft="421.185717117543,80.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,235.070592662455"
+              Start="0,0"
+              End="0,227.570592662455">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,227.570592662455" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.80947265625,108.998675237477,49.6189453125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\carga RMA_BASE\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\carga RMA_BASE\RMA_BASE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

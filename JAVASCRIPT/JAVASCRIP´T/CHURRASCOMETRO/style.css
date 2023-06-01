@@ -1,0 +1,21 @@
+
+.container{
+    font-family: Arial, Helvetica, sans-serif;  /*Fonte da div*/
+    max-width:  300px;                          /*definindo o tamanho da div*/
+    margin:auto;                                /*centralizando a div na pagina*/
+    background-color: aliceblue;              /*cor de fundo da div*/
+    padding: 20px;                              /*espaçamento dos objetos em relação aos cantos da div*/
+    border-radius: 10px;                        /*arredondamento dos cantos da div*/
+}
+
+h1{
+    margin-top: 0px;   /* elimando a margin top do h1*/
+}
+
+input{
+    width: 100%;                /* tera 100% do tamanho do elemento pai*/
+    display: block;             /* não terá nada ao seu lado, irá ocupar o espaço todo*/
+    padding: 5px;               /* padding do texto em relação ao input*/
+    box-sizing: border-box;     /* para considerar a bordar e os padding no tamanho do objeto*/
+    margin-bottom: 10px;        /* margin inferior para separar os elementos inputs*/
+}

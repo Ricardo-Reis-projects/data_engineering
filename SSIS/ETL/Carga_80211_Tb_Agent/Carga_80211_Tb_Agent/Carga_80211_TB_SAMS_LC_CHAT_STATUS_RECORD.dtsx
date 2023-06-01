@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2019 1:41:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GMODE-13"
+  DTS:CreatorName="GMODE-13\GMODE-13"
+  DTS:DTSID="{E551C21C-B2F0-4F17-A979-9548140D3CAC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Carga_80211_TB_SAMS_LC_CHAT_STATUS_RECORD"
+  DTS:PackageType="5"
+  DTS:VersionBuild="76"
+  DTS:VersionGUID="{84A8A6E1-18C4-47CB-8CD6-F187398F8B10}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRSBESRV960.DB_SAMSUNG]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{4A736EE2-6589-4A19-9294-5E74E8F93C3E}"
+      DTS:ObjectName="BRSBESRV960.DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_SAMSUNG;Integrated Security=True;Application Name=SSIS-Carga_80211_TB_SAMS_LC_CHAT_STATUS_RECORD-{4A736EE2-6589-4A19-9294-5E74E8F93C3E}BRSBESRV960.DB_SAMSUNG;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{B43A0DF6-BE6F-497F-BD17-73292470B598}"
+      DTS:ObjectName="IdArquivoMIS">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">14</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5E0BA6B-4FDD-48E1-B592-9181D93C00F0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdLog">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B22A885E-017F-4F63-B079-D043716AA1BD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NomeArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{353EA7E0-9BDC-4CE3-9A70-85BDD75A38CB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PathArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD"
+      DTS:DTSID="{C57C492C-0F13-496D-8174-6A72FB9132BF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4A736EE2-6589-4A19-9294-5E74E8F93C3E}"
+          SQLTask:SqlStatementSource="exec sp_Carga_MIS80211_TB_SAMS_LC_CHAT_STATUS_RECORD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Finaliza Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Finaliza Processamento"
+      DTS:DTSID="{2CDF03D8-6C11-401E-9062-240BF84BC427}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Finaliza Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_ca857f723d984cb4b97abdddde431aa1"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inicia Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{252275FC-F6A8-4341-8A44-0ADCCB47CD0B}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicia Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_29a8bf3b18aa4eec9a88681b786fd62a"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4BEA34E6-5009-4576-9427-68D67E91CB8A}"
+      DTS:From="Package\Inicia Processamento"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{3E9918BA-D5E3-4D95-9265-8A0A90E5787D}"
+      DTS:From="Package\Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Finaliza Processamento" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="342,42"
+          Id="Package\Alimenta Tabela TB_SAMS_LC_CHAT_STATUS_RECORD"
+          TopLeft="115.071428036203,148.382350667538" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Finaliza Processamento"
+          TopLeft="160.742058207929,272.945097318515" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Inicia Processamento"
+          TopLeft="192.5,44.6117647144621" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="284.035714018101,86.6117647144621">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.7705859530759"
+              Start="0,0"
+              End="0,54.2705859530759">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.2705859530759" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="282.156743122066,190.382350667538">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.562746650977"
+              Start="0,0"
+              End="0,75.062746650977">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.062746650977" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

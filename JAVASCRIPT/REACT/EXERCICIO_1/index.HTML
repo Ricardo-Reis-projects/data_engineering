@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!--importando React-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!--importando Babel para utilizatr JSX(html no java script)-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        const root = document.querySelector('#root');
+
+        //Maneira para inserir elemento na tela, ultizando React
+        //const t1 = React.createElement("h1", { id: "Titulo principal" }, "Hello World");
+        //const t2 = React.createElement("h1", { id: "Titulo complementar" }, "Subtítulo");
+
+        //const headline = React.createElement("div", null, t1, t2);
+
+        //ReactDOM.render(headline, root);
+
+
+        //outra maneira para inserir elemento na tela, ultizando JSX e importando o babel 
+
+        //função retornando um jsx
+        const page = () => {
+            return <div>
+                <h1 id="Titulo principal">Hello World</h1>
+                <h1 id="Titulo complementar">Subtítulo</h1>
+            </div>
+
+        }
+
+        ReactDOM.render(page(), root);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1829 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/5/2019 4:58:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A549043"
+  DTS:CreatorName="ATENTOBR\est_ab1314754"
+  DTS:DTSID="{23A418EB-38B9-43AE-85F3-7B4C7C37E8C3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="1_CARGA_VALIDACAO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{8F4A8FF1-E88A-4AB2-A3C8-1613902E34BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CONECTA_ARQUIVO_VALIDACAO]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{74486D3F-AC9F-495E-BCB9-B18CDC5130F1}"
+      DTS:ObjectName="CONECTA_ARQUIVO_VALIDACAO">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::v_Source]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\SCHEMA\Schema_VALIDACAO.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB_SAMSUNG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CD512D4E-47B5-4930-9D68-B10789C5FB61}"
+      DTS:ObjectName="DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=brsbesrv960;Initial Catalog=DB_SAMSUNG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10D20DA3-A659-47D9-8B40-D10FB3F7B746}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::v_Diretorio]+ replace((DT_WSTR, 10) (DT_DBDATE)getdate(),&quot;-&quot;,&quot;&quot;)+&quot;_&quot;+ @[User::v_fileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Destination">
+      <DTS:VariableValue
+        DTS:DataType="8">\\brsbesrv960\Publico\SAMSUNG\CargasETLs\Historico\20191107_validação.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{99F4EDFF-631E-4E49-974C-2A6205508759}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Diretorio">
+      <DTS:VariableValue
+        DTS:DataType="8">\\brsbesrv960\Publico\SAMSUNG\CargasETLs\Historico\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3EF7A8A2-5667-4C23-8E23-4BF0E50030F9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_fileName">
+      <DTS:VariableValue
+        DTS:DataType="8">validação.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A3E3CA7C-7FDC-4A62-816E-57C1CDE49403}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Source">
+      <DTS:VariableValue
+        DTS:DataType="8">\\brsbesrv960\Publico\SAMSUNG\CargasETLs\SCHEMA\Schema_VALIDACAO.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\LACO_IMPORT_EXCEL"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Contêiner do Loop Foreach"
+      DTS:DTSID="{AFE6C934-9792-403C-9E53-0C99DD13B625}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LACO_IMPORT_EXCEL">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{876E295E-DE2F-4CE9-AA8F-F7D383F19E0E}"
+        DTS:ObjectName="{876E295E-DE2F-4CE9-AA8F-F7D383F19E0E}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\brsbesrv960\Publico\SAMSUNG\CargasETLs" />
+            <FEFEProperty
+              FileSpec="validação.xlsx" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\COPY"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{FD28C1FC-C01A-4D85-8E78-1326D8AEAB9D}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="COPY"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::v_Source"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::v_Destination"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\DELETE"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{BB3F8552-BEDD-48F8-A684-7DD901F356D5}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DELETE"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::v_Source"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::v_Destination"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{24BA4BB0-66E3-4BA2-A50D-9D34552A96F5}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversão de Dados"
+                  name="Conversão de Dados"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                      name="Entrada de Conversão de Dados">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[group]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="group"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[group]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[form]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="form"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[form]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[user]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="user"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[user]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[username]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="username"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[username]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[usergroup]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="usergroup"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[usergroup]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[company]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="company"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[company]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[startedAt]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="startedAt"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAt]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[startedAtTime]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="startedAtTime"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAtTime]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[finishedAt]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="finishedAt"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAt]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[finishedAtTime]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="finishedAtTime"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAtTime]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[timeToComplete]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="timeToComplete"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[timeToComplete]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Qual é a validação?]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Qual é a validação?"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é a validação?]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Categoria de Produto:]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Categoria de Produto:"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Categoria de Produto:]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Nome do Operador (Nome Completo):]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Nome do Operador (Nome Completo):"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Nome do Operador (Nome Completo):]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Qual é o modelo do produto (código de modelo)?]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Qual é o modelo do produto (código de modelo)?"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Qual é o sintoma do produto?]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Qual é o sintoma do produto?"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o sintoma do produto?]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Número da Ordem de Serviço]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Número da Ordem de Serviço"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Número da Ordem de Serviço]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Horário da validação]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Horário da validação"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Horário da validação]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                      exclusionGroup="1"
+                      name="Saída de Conversão de Dados"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_group]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_group]"
+                          name="NM_group"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[group]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_form]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_form]"
+                          name="NM_form"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[form]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_user]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_user]"
+                          name="NM_user"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[user]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_username]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_username]"
+                          name="NM_username"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[username]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_usergroup]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_usergroup]"
+                          name="NM_usergroup"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[usergroup]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_company]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_company]"
+                          name="NM_company"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[company]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAt]"
+                          name="NM_startedAt"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAt]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAtTime]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAtTime]"
+                          name="NM_startedAtTime"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAtTime]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAt]"
+                          name="NM_finishedAt"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAt]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAtTime]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAtTime]"
+                          name="NM_finishedAtTime"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAtTime]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_timeToComplete]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_timeToComplete]"
+                          name="NM_timeToComplete"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[timeToComplete]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_validacao]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_validacao]"
+                          name="NM_validacao"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é a validação?]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Categoria_Produto]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Categoria_Produto]"
+                          name="NM_Categoria_Produto"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Categoria de Produto:]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Operador]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Operador]"
+                          name="NM_Operador"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Nome do Operador (Nome Completo):]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Codigo_modelo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Codigo_modelo]"
+                          name="NM_Codigo_modelo"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Sintoma_produto]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="8000"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Sintoma_produto]"
+                          name="NM_Sintoma_produto"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o sintoma do produto?]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Ordem_Servico]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Ordem_Servico]"
+                          name="NM_Ordem_Servico"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Número da Ordem de Serviço]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Horario_validacao]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Horario_validacao]"
+                          name="NM_Horario_validacao"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                              name="SourceInputColumnLineageID">#{Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Horário da validação]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Conversão de Dados"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origem do Excel"
+                  name="Origem do Excel"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">rawData$</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="O mapeamento de parâmetros no comando SQL para variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CONECTA_ARQUIVO_VALIDACAO]"
+                      connectionManagerRefId="Package.ConnectionManagers[CONECTA_ARQUIVO_VALIDACAO]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel]"
+                      name="Saída de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[group]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[group]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[group]"
+                          name="group"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[form]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[form]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[form]"
+                          name="form"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[user]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[user]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[user]"
+                          name="user"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[username]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[username]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[username]"
+                          name="username"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[usergroup]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[usergroup]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[usergroup]"
+                          name="usergroup"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[company]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[company]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[company]"
+                          name="company"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAt]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[startedAt]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAt]"
+                          name="startedAt"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAtTime]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[startedAtTime]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[startedAtTime]"
+                          name="startedAtTime"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAt]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[finishedAt]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAt]"
+                          name="finishedAt"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAtTime]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[finishedAtTime]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[finishedAtTime]"
+                          name="finishedAtTime"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[timeToComplete]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[timeToComplete]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[timeToComplete]"
+                          name="timeToComplete"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é a validação?]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é a validação?]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é a validação?]"
+                          name="Qual é a validação?"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Categoria de Produto:]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria de Produto:]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Categoria de Produto:]"
+                          name="Categoria de Produto:"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Nome do Operador (Nome Completo):]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Nome do Operador (Nome Completo):]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Nome do Operador (Nome Completo):]"
+                          name="Nome do Operador (Nome Completo):"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é o modelo do produto (código de modelo)?]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]"
+                          name="Qual é o modelo do produto (código de modelo)?"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o sintoma do produto?]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é o sintoma do produto?]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Qual é o sintoma do produto?]"
+                          name="Qual é o sintoma do produto?"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Número da Ordem de Serviço]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Número da Ordem de Serviço]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Número da Ordem de Serviço]"
+                          name="Número da Ordem de Serviço"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Horário da validação]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Horário da validação]"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Horário da validação]"
+                          name="Horário da validação"
+                          truncationRowDisposition="IgnoreFailure" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[group]"
+                          dataType="wstr"
+                          length="255"
+                          name="group" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[form]"
+                          dataType="wstr"
+                          length="255"
+                          name="form" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[user]"
+                          dataType="wstr"
+                          length="255"
+                          name="user" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[username]"
+                          dataType="wstr"
+                          length="255"
+                          name="username" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[usergroup]"
+                          dataType="wstr"
+                          length="255"
+                          name="usergroup" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[company]"
+                          dataType="wstr"
+                          length="255"
+                          name="company" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[startedAt]"
+                          dataType="wstr"
+                          length="255"
+                          name="startedAt" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[startedAtTime]"
+                          dataType="wstr"
+                          length="255"
+                          name="startedAtTime" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[finishedAt]"
+                          dataType="wstr"
+                          length="255"
+                          name="finishedAt" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[finishedAtTime]"
+                          dataType="wstr"
+                          length="255"
+                          name="finishedAtTime" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[timeToComplete]"
+                          dataType="wstr"
+                          length="255"
+                          name="timeToComplete" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é a validação?]"
+                          dataType="wstr"
+                          length="255"
+                          name="Qual é a validação?" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria de Produto:]"
+                          dataType="wstr"
+                          length="255"
+                          name="Categoria de Produto:" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Nome do Operador (Nome Completo):]"
+                          dataType="wstr"
+                          length="255"
+                          name="Nome do Operador (Nome Completo):" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é o modelo do produto (código de modelo)?]"
+                          dataType="wstr"
+                          length="255"
+                          name="Qual é o modelo do produto (código de modelo)?" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Qual é o sintoma do produto?]"
+                          dataType="wstr"
+                          length="255"
+                          name="Qual é o sintoma do produto?" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Número da Ordem de Serviço]"
+                          dataType="wstr"
+                          length="255"
+                          name="Número da Ordem de Serviço" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Horário da validação]"
+                          dataType="wstr"
+                          length="255"
+                          name="Horário da validação" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[group]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[group]"
+                          name="group" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[form]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[form]"
+                          name="form" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[user]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[user]"
+                          name="user" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[username]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[username]"
+                          name="username" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[usergroup]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[usergroup]"
+                          name="usergroup" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[company]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[company]"
+                          name="company" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[startedAt]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[startedAt]"
+                          name="startedAt" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[startedAtTime]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[startedAtTime]"
+                          name="startedAtTime" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[finishedAt]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[finishedAt]"
+                          name="finishedAt" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[finishedAtTime]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[finishedAtTime]"
+                          name="finishedAtTime" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[timeToComplete]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[timeToComplete]"
+                          name="timeToComplete" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é a validação?]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é a validação?]"
+                          name="Qual é a validação?" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria de Produto:]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria de Produto:]"
+                          name="Categoria de Produto:" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Nome do Operador (Nome Completo):]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Nome do Operador (Nome Completo):]"
+                          name="Nome do Operador (Nome Completo):" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é o modelo do produto (código de modelo)?]"
+                          name="Qual é o modelo do produto (código de modelo)?" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é o sintoma do produto?]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Qual é o sintoma do produto?]"
+                          name="Qual é o sintoma do produto?" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Número da Ordem de Serviço]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Número da Ordem de Serviço]"
+                          name="Número da Ordem de Serviço" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Horário da validação]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Horário da validação]"
+                          name="Horário da validação" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="TB_STG_SAMS_CONSULTORES_TEC_VALID"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[TB_STG_SAMS_CONSULTORES_TEC_VALID]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DB_SAMSUNG]"
+                      connectionManagerRefId="Package.ConnectionManagers[DB_SAMSUNG]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="IgnoreFailure"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_group]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_group"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_group]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_group]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_form]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_form"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_form]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_form]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_user]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_user"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_user]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_user]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_username]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_username"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_username]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_username]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_usergroup]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_usergroup"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_usergroup]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_usergroup]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_company]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_company"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_company]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_company]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_startedAt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_startedAt"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_startedAt]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAt]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_startedAtTime]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_startedAtTime"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_startedAtTime]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_startedAtTime]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_finishedAt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_finishedAt"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_finishedAt]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAt]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_finishedAtTime]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_finishedAtTime"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_finishedAtTime]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_finishedAtTime]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_timeToComplete]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_timeToComplete"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_timeToComplete]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_timeToComplete]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_validacao]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_validacao"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_validacao]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_validacao]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Categoria_Produto]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_Categoria_Produto"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Categoria_Produto]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Categoria_Produto]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Operador]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_Operador"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Operador]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Operador]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Codigo_modelo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_Codigo_modelo"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Codigo_modelo]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Codigo_modelo]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Sintoma_produto]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8000"
+                          cachedName="NM_Sintoma_produto"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Sintoma_produto]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Sintoma_produto]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Ordem_Servico]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_Ordem_Servico"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Ordem_Servico]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Ordem_Servico]" />
+                        <inputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].Columns[NM_Horario_validacao]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="NM_Horario_validacao"
+                          externalMetadataColumnId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Horario_validacao]"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Horario_validacao]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_group]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_group" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_form]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_form" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_user]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_user" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_username]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_username" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_usergroup]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_usergroup" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_company]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_company" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_startedAt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_startedAt" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_startedAtTime]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_startedAtTime" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_finishedAt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_finishedAt" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_finishedAtTime]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_finishedAtTime" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_timeToComplete]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_timeToComplete" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_validacao]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_validacao" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Categoria_Produto]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_Categoria_Produto" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Operador]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_Operador" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Codigo_modelo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_Codigo_modelo" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Sintoma_produto]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          name="NM_Sintoma_produto" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Ordem_Servico]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_Ordem_Servico" />
+                        <externalMetadataColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Horario_validacao]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="NM_Horario_validacao" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID.Paths[Saída de Conversão de Dados]"
+                  endId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Conversão de Dados"
+                  startId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+                <path
+                  refId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID.Paths[Saída de Origem do Excel]"
+                  endId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Saída de Origem do Excel"
+                  startId="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel.Outputs[Saída de Origem do Excel]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{61A37482-3BE2-4F74-ABE8-398D99C968EA}"
+          DTS:From="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\LACO_IMPORT_EXCEL\COPY" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{25C459E2-4460-48E5-886E-BDCB7C04EE00}"
+          DTS:From="Package\LACO_IMPORT_EXCEL\COPY"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 1"
+          DTS:To="Package\LACO_IMPORT_EXCEL\DELETE" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{63F3FD4C-22FE-4598-BA08-C6E6C3A0B8BC}"
+          DTS:ObjectName="{63F3FD4C-22FE-4598-BA08-C6E6C3A0B8BC}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::v_Source" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6B0A5368-58A4-41B3-B91A-3CD175F7CCE0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CD512D4E-47B5-4930-9D68-B10789C5FB61}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.TB_STG_SAMS_CONSULTORES_TEC_VALID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{1475EB6C-A41F-4AB8-9709-C322FF9701B1}"
+      DTS:From="Package\TRUNCATE_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\LACO_IMPORT_EXCEL" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="107,42"
+          Id="Package\LACO_IMPORT_EXCEL\COPY"
+          TopLeft="123,89" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\LACO_IMPORT_EXCEL\DELETE"
+          TopLeft="115,161" />
+        <NodeLayout
+          Size="332,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          TopLeft="5.5,8" />
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição]"
+          TopLeft="174,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL.PrecedenceConstraints[Restrição 1]"
+          TopLeft="175.25,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="342,269"
+          Size="342,312"
+          Id="Package\LACO_IMPORT_EXCEL"
+          TopLeft="379,40" />
+        <NodeLayout
+          Size="346,43"
+          Id="Package\TRUNCATE_TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          TopLeft="0,66" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="346,87.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33,108.5"
+              Start="0,0"
+              End="25.5,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="12.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,0"
+                    Point2="16.5,0"
+                    Point3="16.5,4" />
+                  <mssgle:LineSegment
+                    End="16.5,104.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,104.5"
+                    Point2="16.5,108.5"
+                    Point3="20.5,108.5" />
+                  <mssgle:LineSegment
+                    End="25.5,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel"
+          TopLeft="159,29" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Conversão de Dados"
+          TopLeft="307,93" />
+        <NodeLayout
+          Size="288,42"
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID"
+          TopLeft="380,166" />
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID.Paths[Saída de Origem do Excel]"
+          TopLeft="317,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,43"
+              Start="0,0"
+              End="79,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75,0"
+                    Point2="79,0"
+                    Point3="79,4" />
+                  <mssgle:LineSegment
+                    End="79,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID.Paths[Saída de Conversão de Dados]"
+          TopLeft="396,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128,31"
+              Start="0,0"
+              End="128,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="124,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="124,15.5"
+                    Point2="128,15.5"
+                    Point3="128,19.5" />
+                  <mssgle:LineSegment
+                    End="128,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\Origem do Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LACO_IMPORT_EXCEL\IMPORT_TB_STG_SAMS_CONSULTORES_TEC_VALID\TB_STG_SAMS_CONSULTORES_TEC_VALID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

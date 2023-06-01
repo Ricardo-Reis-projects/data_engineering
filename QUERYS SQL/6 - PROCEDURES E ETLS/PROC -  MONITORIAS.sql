@@ -1,0 +1,14 @@
+
+USE BRA_SOLUCOES_PDV
+
+--====================MONITORIAS ÚLTIMOS TRÊS MESES==============================================
+
+----- MONITORIA VENDAS
+DECLARE @DATA_ANALISE AS DATE 
+SET @DATA_ANALISE = GETDATE()-1 -- <<-- INFORME A DATA DE APURAÇÃO DA MONITORIA - PADRÃO AAAA-MM-DD
+
+EXEC MONITORIA_3_MESES  @DATA_ANALISE
+
+
+--====================MONITORIAS VENDAS ABAIXO DA MÉDIA==========================================
+EXEC MONITORIA_VENDAS_ABAIXO_MEDIA

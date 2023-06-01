@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+
+<body>
+
+    <div id="main">
+
+
+    </div>
+
+
+    <!--umportando o socket io-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        //criando conexao com o front e o back
+        const socket = io('http://localhost:3000')
+
+        //preparando o front  para receber mensagem do backend
+        //recebendo a mensagem hello do back
+        socket.on('hello', (data) => {
+            console.log(data.msg)
+
+
+            //enviando mensagem para o backend.
+            //parametros: nome_mensagem = hello_client_responsee o objeto de envio
+            socket.emit('hello_client_response', { msg: "Tudo certinho!" })
+        })
+
+
+
+
+
+
+    </script>
+
+
+    <!--EXEMPLO 1 DE ATUALIZAÇÃO DE LISTA NO FRONT END SEM UTILIZAR O SOCKET IO
+
+
+    <div id='list'>
+
+    </div>
+
+    <script>
+
+        fetch('/list')
+            .then(res => res.json())
+            .then(data => {
+                let list = "<ul>"
+                data.map(item => {
+                    list += `<li>${item}</li>`
+
+                })
+                list += "</ul>"
+                document.querySelector("#list").innerHTML = list
+
+            })
+
+
+    </script>
+
+    -->
+
+</body>
+
+</html>

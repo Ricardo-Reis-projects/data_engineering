@@ -1,0 +1,1926 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2019 4:33:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A549043"
+  DTS:CreatorName="ATENTOBR\est_ab1314754"
+  DTS:DTSID="{7495F279-8E03-49EE-BD73-C74F1A63025F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CARGA_HAPPY_CALL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{3DF2E942-2380-4F3D-8AFA-D55E8190E0A6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C57C0BF4-587E-4045-BDD7-107B05FD9E75}"
+      DTS:ObjectName="brsbesrv960.DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=brsbesrv960;Initial Catalog=DB_SAMSUNG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CONEXAO_EXCEL]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0A1AC825-36DF-45FC-B0C2-F0C6EAFAF172}"
+      DTS:ObjectName="CONEXAO_EXCEL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\BASE_HAPPY_CALL.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA_HAPPY_CALL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{9841799B-D80D-4708-A91D-FFACD220D8CC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA_HAPPY_CALL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Origem do Excel"
+              name="CONEXAO_EXCEL"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">'Respostas ao formulário 1$'</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="O mapeamento de parâmetros no comando SQL para variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CONEXAO_EXCEL]"
+                  connectionManagerRefId="Package.ConnectionManagers[CONEXAO_EXCEL]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel]"
+                  name="Saída de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Carimbo de data/hora]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]"
+                      name="Carimbo de data/hora"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[ANALISTA ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[ANALISTA ]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[ANALISTA ]"
+                      name="ANALISTA "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[OS]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[OS]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[OS]"
+                      name="OS"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[CONTATO TELEFÔNICO]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      name="CONTATO TELEFÔNICO"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      name="&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[QUAL É O TIPO DE SERVIÇO ]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]"
+                      name="QUAL É O TIPO DE SERVIÇO "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      name="&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      name="&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      name="&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      name="&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      name="Do momento em que o(a) sr(a) deixou o produto para reparo, quant"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      name="Depois que o serviço foi finalizado, o atendente explicou o repa"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      name="Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[O(A) Sr(a) pagou por esse reparo?]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]"
+                      name="O(A) Sr(a) pagou por esse reparo?"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      name="Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      name="Como o(a) sr(a) avaliaria o serviço de coleta?"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Como o (a) sr(a) enviou seu produto?]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]"
+                      name="Como o (a) sr(a) enviou seu produto?"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      name="Depois que o produto foi enviado, quanto tempo levou para o prod"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      name="(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      name="Tempo de Visita: Quanto tempo levou para acontecer a primeira vi"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Carimbo de data/hora]"
+                      dataType="date"
+                      name="Carimbo de data/hora" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[ANALISTA ]"
+                      dataType="wstr"
+                      length="255"
+                      name="ANALISTA " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[OS]"
+                      dataType="r8"
+                      name="OS" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      length="255"
+                      name="CONTATO TELEFÔNICO" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      dataType="wstr"
+                      length="255"
+                      name="&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[QUAL É O TIPO DE SERVIÇO ]"
+                      dataType="wstr"
+                      length="255"
+                      name="QUAL É O TIPO DE SERVIÇO " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      dataType="r8"
+                      name="&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      dataType="wstr"
+                      length="255"
+                      name="&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      dataType="wstr"
+                      length="255"
+                      name="&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      dataType="wstr"
+                      length="255"
+                      name="&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      dataType="wstr"
+                      length="255"
+                      name="Do momento em que o(a) sr(a) deixou o produto para reparo, quant" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      dataType="r8"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      dataType="r8"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      dataType="wstr"
+                      length="255"
+                      name="Depois que o serviço foi finalizado, o atendente explicou o repa" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      dataType="r8"
+                      name="Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[O(A) Sr(a) pagou por esse reparo?]"
+                      dataType="wstr"
+                      length="255"
+                      name="O(A) Sr(a) pagou por esse reparo?" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      dataType="wstr"
+                      length="255"
+                      name="Como o(a) sr(a) avaliaria o serviço de coleta?" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Como o (a) sr(a) enviou seu produto?]"
+                      dataType="wstr"
+                      length="255"
+                      name="Como o (a) sr(a) enviou seu produto?" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      dataType="wstr"
+                      length="255"
+                      name="Depois que o produto foi enviado, quanto tempo levou para o prod" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      dataType="wstr"
+                      length="255"
+                      name="(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].ExternalColumns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tempo de Visita: Quanto tempo levou para acontecer a primeira vi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Carimbo de data/hora]"
+                      dataType="date"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Carimbo de data/hora]"
+                      name="Carimbo de data/hora" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ANALISTA ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ANALISTA ]"
+                      name="ANALISTA " />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[OS]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[OS]"
+                      name="OS" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      name="CONTATO TELEFÔNICO" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      name="&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]"
+                      name="QUAL É O TIPO DE SERVIÇO " />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      name="&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      name="&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      name="&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      name="&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      name="Do momento em que o(a) sr(a) deixou o produto para reparo, quant" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      name="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      name="Depois que o serviço foi finalizado, o atendente explicou o repa" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      name="Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]"
+                      name="O(A) Sr(a) pagou por esse reparo?" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      name="Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; " />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria " />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      name="Como o(a) sr(a) avaliaria o serviço de coleta?" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]"
+                      name="Como o (a) sr(a) enviou seu produto?" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      name="Depois que o produto foi enviado, quanto tempo levou para o prod" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      name="(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o " />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      name="Tempo de Visita: Quanto tempo levou para acontecer a primeira vi" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_HAPPY_CALL\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Carimbo de data/hora]"
+                      cachedDataType="date"
+                      cachedName="Carimbo de data/hora"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[ANALISTA ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ANALISTA "
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[ANALISTA ]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[OS]"
+                      cachedDataType="r8"
+                      cachedName="OS"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[OS]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CONTATO TELEFÔNICO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CONTATO TELEFÔNICO"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[QUAL É O TIPO DE SERVIÇO ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QUAL É O TIPO DE SERVIÇO "
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]"
+                      cachedDataType="r8"
+                      cachedName="&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Qual a sua satisfação com relação a prestação de Serviço da Sam]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot; Na sua opinião, qual foi o principal motivo de sua insatisfaçã]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Do momento em que o(a) sr(a) deixou o produto para reparo, quant"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]"
+                      cachedDataType="r8"
+                      cachedName="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]"
+                      cachedDataType="r8"
+                      cachedName="(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Depois que o serviço foi finalizado, o atendente explicou o repa"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]"
+                      cachedDataType="r8"
+                      cachedName="Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O(A) Sr(a) pagou por esse reparo?]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O(A) Sr(a) pagou por esse reparo?"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; "
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Você pagou: &quot;Pelo Serviço e pelas peças&quot;, &quot;Apenas pelas peças&quot;; ]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      cachedDataType="r8"
+                      cachedName="&quot;Com base na sua experiência de serviço, como você recomendaria "
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Como o(a) sr(a) avaliaria o serviço de coleta?"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Como o (a) sr(a) enviou seu produto?]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Como o (a) sr(a) enviou seu produto?"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Depois que o produto foi enviado, quanto tempo levou para o prod"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o "
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tempo de Visita: Quanto tempo levou para acontecer a primeira vi"
+                      lineageId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Carimbo_data]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Carimbo_data]"
+                      name="NM_Carimbo_data"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Analista]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Analista]"
+                      name="NM_Analista"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[ANALISTA ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_OS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_OS]"
+                      name="NM_OS"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[OS]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Contato]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Contato]"
+                      name="NM_Contato"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]"
+                      name="NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns["O(A) Sr(a) recentemente teve experiência com algum Serviço Sams]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_tipo_de_servico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_tipo_de_servico]"
+                      name="NM_Qual_tipo_de_servico"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[QUAL É O TIPO DE SERVIÇO ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]"
+                      name="NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns["Qual a sua satisfação com relação a prestação de Serviço da Sam]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]"
+                      name="NM_Qual_foi_o_principal_motivo_de_sua_satisfacao"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns["(7 - Muito Satisfeito) Na sua opinião, qual foi o principal mot]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]"
+                      name="NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[" Na sua opinião, qual foi o principal motivo de sua insatisfaçã]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]"
+                      name="NM_Quanto_tempo_esperou_antes_de_ser_atendido"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns["Quanto tempo o(a) sr(a) esperou antes de ser atendido? Por favo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]"
+                      name="NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Do momento em que o(a) sr(a) deixou o produto para reparo, quant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]"
+                      name="NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito i]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]"
+                      name="NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(Em uma escala de 7 pontos, sendo 7 muito satisfeito e 1 muito 1]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]"
+                      name="NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o serviço foi finalizado, o atendente explicou o repa]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]"
+                      name="NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Gentileza da recepcionista (1-7)(Em uma escala de 7 pontos, send]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_por_esse_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_por_esse_reparo]"
+                      name="NM_Voce_pagou_por_esse_reparo"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[O(A) Sr(a) pagou por esse reparo?]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]"
+                      name="NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Você pagou: "Pelo Serviço e pelas peças", "Apenas pelas peças"; ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]"
+                      name="NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns["Com base na sua experiência de serviço, como você recomendaria ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_valiaria_o_servico_de_coleta]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_valiaria_o_servico_de_coleta]"
+                      name="NM_Como_voce_valiaria_o_servico_de_coleta"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o(a) sr(a) avaliaria o serviço de coleta?]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_enviou_seu_produto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_enviou_seu_produto]"
+                      name="NM_Como_voce_enviou_seu_produto"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Como o (a) sr(a) enviou seu produto?]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]"
+                      name="NM_Quanto_tempo_levou_para_o_produto_retornar_reparado"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Depois que o produto foi enviado, quanto tempo levou para o prod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]"
+                      name="NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[(IH) Quantas vezes o Técnico foi até a sua casa até finalizar o ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]"
+                      name="NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel].Columns[Tempo de Visita: Quanto tempo levou para acontecer a primeira vi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_STG_SAMS_BASE_SAP_HAPPY_CALL]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+                  connectionManagerRefId="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Analista]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Analista"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Analista]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Analista]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_OS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_OS"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_OS]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_OS]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Contato]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Contato"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Contato]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Contato]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Qual_tipo_de_servico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Qual_tipo_de_servico"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_tipo_de_servico]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_tipo_de_servico]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Qual_foi_o_principal_motivo_de_sua_satisfacao"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Quanto_tempo_esperou_antes_de_ser_atendido"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Voce_pagou_por_esse_reparo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Voce_pagou_por_esse_reparo"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Voce_pagou_por_esse_reparo]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_por_esse_reparo]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Como_voce_valiaria_o_servico_de_coleta]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Como_voce_valiaria_o_servico_de_coleta"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Como_voce_valiaria_o_servico_de_coleta]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_valiaria_o_servico_de_coleta]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Como_voce_enviou_seu_produto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Como_voce_enviou_seu_produto"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Como_voce_enviou_seu_produto]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Como_voce_enviou_seu_produto]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Quanto_tempo_levou_para_o_produto_retornar_reparado"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]" />
+                    <inputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].Columns[NM_Carimbo_data]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_Carimbo_data"
+                      externalMetadataColumnId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_carimbo_data]"
+                      lineageId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_Carimbo_data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Analista]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Analista" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_OS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_OS" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Contato]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Contato" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Recentemente_teve_experiencia_com_algum_Servico_Samsung" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_tipo_de_servico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Qual_tipo_de_servico" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Qual_sua_satisfacao_com_relacao_a_prestacao_de_Servico" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_foi_o_principal_motivo_de_sua_satisfacao]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Qual_foi_o_principal_motivo_de_sua_satisfacao" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Qual_foi_o_principal_motivo_de_sua_insatisfacao" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_esperou_antes_de_ser_atendido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Quanto_tempo_esperou_antes_de_ser_atendido" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Quanto_tempo_levou_para_ter_o_produto_reparado_ou_para_receber_a_notificacao" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Avalie_sua_satisfacao_com_relacao_ao_tempo_de_reparo" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Avalie_sua_satisfacao_com_relacao_a_qualidade_do_reparo" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Atendente_explicou_o_reparo_realizado_e_demonstrou_o_produto_funcionando" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Qual_sua_satisfacao_com_relacao_a_gentileza_da_atendente_recepcionista" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Voce_pagou_por_esse_reparo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Voce_pagou_por_esse_reparo" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Voce_pagou_Pelo_Servico_pelas_pecas_ou_por_um_acessorio" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Em_uma_escala_de_0_a_10_como_voce_recomendaria_a_Samsung" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Como_voce_valiaria_o_servico_de_coleta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Como_voce_valiaria_o_servico_de_coleta" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Como_voce_enviou_seu_produto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Como_voce_enviou_seu_produto" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_o_produto_retornar_reparado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Quanto_tempo_levou_para_o_produto_retornar_reparado" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Quantas_vezes_o_Tecnico_foi_ate_a_sua_casa_ate_finalizar_o_servico" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_Quanto_tempo_levou_para_acontecer_a_primeira_visita_de_um_tecnico" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_carimbo_data]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_carimbo_data" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA_HAPPY_CALL.Paths[Saída de Conversão de Dados]"
+              endId="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Conversão de Dados"
+              startId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\CARGA_HAPPY_CALL.Paths[Saída de Origem do Excel]"
+              endId="Package\CARGA_HAPPY_CALL\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem do Excel"
+              startId="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL.Outputs[Saída de Origem do Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE_TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2038EF54-97F6-440E-92F5-DBDA8A618A08}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE_TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C57C0BF4-587E-4045-BDD7-107B05FD9E75}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.TB_STG_SAMS_BASE_SAP_HAPPY_CALL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{AC505710-3E09-4435-B9E1-1AC7AD1159A2}"
+      DTS:From="Package\TRUNCATE_TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\CARGA_HAPPY_CALL" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\CARGA_HAPPY_CALL"
+          TopLeft="463,173" />
+        <NodeLayout
+          Size="330,42"
+          Id="Package\TRUNCATE_TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+          TopLeft="110,50" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="275,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="278.5,81"
+              Start="0,0"
+              End="278.5,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.5"
+                    Point2="0,40.5"
+                    Point3="4,40.5" />
+                  <mssgle:LineSegment
+                    End="274.5,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="274.5,40.5"
+                    Point2="278.5,40.5"
+                    Point3="278.5,44.5" />
+                  <mssgle:LineSegment
+                    End="278.5,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA_HAPPY_CALL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="272,42"
+          Id="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL"
+          TopLeft="422,207" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL"
+          TopLeft="125,31" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\CARGA_HAPPY_CALL\Conversão de Dados"
+          TopLeft="257,122" />
+        <EdgeLayout
+          Id="Package\CARGA_HAPPY_CALL.Paths[Saída de Origem do Excel]"
+          TopLeft="207,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139,49"
+              Start="0,0"
+              End="139,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="135,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135,24.5"
+                    Point2="139,24.5"
+                    Point3="139,28.5" />
+                  <mssgle:LineSegment
+                    End="139,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_HAPPY_CALL.Paths[Saída de Conversão de Dados]"
+          TopLeft="346,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="212,43"
+              Start="0,0"
+              End="212,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="208,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="208,21.5"
+                    Point2="212,21.5"
+                    Point3="212,25.5" />
+                  <mssgle:LineSegment
+                    End="212,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_HAPPY_CALL\TB_STG_SAMS_BASE_SAP_HAPPY_CALL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_HAPPY_CALL\CONEXAO_EXCEL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

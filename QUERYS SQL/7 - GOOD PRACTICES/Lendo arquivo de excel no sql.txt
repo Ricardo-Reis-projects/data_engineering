@@ -1,0 +1,7 @@
+
+	SELECT * 
+FROM OPENROWSET (
+    'Microsoft.ACE.OLEDB.12.0', 
+    'Excel 12.0;Database=\\gru3wvamexdb1\Queries BI\2 - Monitorias\18 - Bradescard\BASES\SODIMAC_ADESÃO.XLS;HDR=NO', 
+    'SELECT * FROM [Indicadores Diarios$]'
+)

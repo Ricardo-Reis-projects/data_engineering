@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2019 1:41:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GMODE-13"
+  DTS:CreatorName="GMODE-13\GMODE-13"
+  DTS:DTSID="{FC2633B1-5E88-4737-8541-D37FBA7B2AEC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Carga_80211_Tb_Forecast"
+  DTS:PackageType="5"
+  DTS:VersionBuild="76"
+  DTS:VersionGUID="{DEE3DB1A-FB90-4348-B613-C3FC2405105F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRSBESRV960.DB_SAMSUNG]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{462383AF-10EE-429C-AA29-FC699D2D1D68}"
+      DTS:ObjectName="BRSBESRV960.DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_SAMSUNG;Integrated Security=True;Application Name=SSIS-Carga_80211_Tb_Forecast-{462383AF-10EE-429C-AA29-FC699D2D1D68}BRSBESRV960.DB_SAMSUNG;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{CC9ECCE9-66B6-4FA4-A5FE-645310C9AA86}"
+      DTS:ObjectName="IdArquivoMIS">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">14</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C2E5EFC-0688-4AE4-9ED8-7BF1E58733E9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdLog">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEA63CBB-465A-4916-B18D-A36876F392BA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NomeArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{732110A5-420E-4AE2-80AA-50F354EDDBDA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PathArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alimenta Tabela TB_FORECAST"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Alimenta Tabela TB_ATEN_PENDENTE286"
+      DTS:DTSID="{F4C49A69-7AA6-42CE-B10D-40AFE514E137}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alimenta Tabela TB_FORECAST"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{462383AF-10EE-429C-AA29-FC699D2D1D68}"
+          SQLTask:SqlStatementSource="EXEC sp_Carga_MIS80211_TB_FORECAST" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Finaliza Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Finaliza Processamento"
+      DTS:DTSID="{BC596D77-CA7F-42C7-91F3-BEDE2B71F935}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Finaliza Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_17442f255ab54f1ea0c018b82db75a75"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inicia Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{8E8581DB-F7E8-4BAD-8E8A-021026D1E1B5}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicia Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_42bf2216652341e29d1b5463d3fecd3f"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{84E61E9E-E47A-400F-BD96-CE958A573A10}"
+      DTS:From="Package\Inicia Processamento"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Alimenta Tabela TB_FORECAST" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{722D0E27-2F35-41CD-8124-96D2BC870FB3}"
+      DTS:From="Package\Alimenta Tabela TB_FORECAST"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Finaliza Processamento" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Alimenta Tabela TB_FORECAST"
+          TopLeft="174.071428036203,152.382350667538" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Finaliza Processamento"
+          TopLeft="160.742058207929,272.945097318515" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Inicia Processamento"
+          TopLeft="192.5,44.6117647144621" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="284.785714018101,86.6117647144621">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.7705859530759"
+              Start="0,0"
+              End="0,58.2705859530759">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.2705859530759" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="287.571428036203,194.382350667538">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.32936982827397,78.562746650977"
+              Start="0,0"
+              End="-9.32936982827397,71.062746650977">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.2813733254885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.2813733254885"
+                    Point2="0,39.2813733254885"
+                    Point3="-4,39.2813733254885" />
+                  <mssgle:LineSegment
+                    End="-5.32936982827397,39.2813733254885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.32936982827397,39.2813733254885"
+                    Point2="-9.32936982827397,39.2813733254885"
+                    Point3="-9.32936982827397,43.2813733254885" />
+                  <mssgle:LineSegment
+                    End="-9.32936982827397,71.062746650977" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

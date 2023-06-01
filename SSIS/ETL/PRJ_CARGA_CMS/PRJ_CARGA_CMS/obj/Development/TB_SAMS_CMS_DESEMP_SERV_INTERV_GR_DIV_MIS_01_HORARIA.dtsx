@@ -1,0 +1,2230 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/19/2019 5:41:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A549043"
+  DTS:CreatorName="ATENTOBR\est_613890"
+  DTS:DTSID="{E6E80B55-8946-49A0-BDA0-70FC45BB61AF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{6B501F94-15A3-4ADB-AA61-18732F4F04EA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRSBESRV960.DB_SAMSUNG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D0196D9E-EAD3-464A-89E1-632A84BC7834}"
+      DTS:ObjectName="BRSBESRV960.DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_SAMSUNG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLCORP82]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{441114A5-1D1A-41D0-9630-DD62DB8BF1A9}"
+      DTS:ObjectName="SQLCORP82">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLCORP82;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DELETE_TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5B6A2EAB-692A-444B-9D2B-56046F20960F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DELETE_TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D0196D9E-EAD3-464A-89E1-632A84BC7834}"
+          SQLTask:SqlStatementSource="DELETE FROM TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA WHERE DT_DATA &gt;= DATEADD(D, -10, CONVERT(DATE, GETDATE(), 103))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{BCE1B890-491A-4A5C-BAAC-EA8B46776315}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\SQLCORP82"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="SQLCORP82"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	 CMS.[DATA]									AS DT_DATA
+    ,CMS.[SKILL]								AS NR_SKILL
+	,ADM.[NM_SKILL_NOME]                        AS NM_SKILL_NOME
+    ,ADM.[NM_PILAR_NOME]                        AS NM_PILAR_NOME
+    ,ADM.[NM_OPERACAO_NOME]						AS NM_OPERACAO_NOME
+    ,ADM.[NM_CELULA_NOME]                       AS NM_CELULA_NOME
+    ,ADM.[NM_SEGMENTO_NOME]						AS NM_SEGMENTO_NOME
+    ,ADM.[NM_PROGRAMA_NOME]						AS NM_PROGRAMA_NOME
+	,CMS.[HORARIO]								AS NR_HORARIO
+    ,CMS.[CHAMS PERMS]							AS NR_CHAMS_PERMS
+    ,CMS.[CHAMS ATEND]							AS NR_CHAMS_ATEND
+    ,CMS.[NIVEL AT]								AS VL_NIVEL_AT
+    ,CMS.[FCL09 AT]								AS VL_FCL09_AT
+    ,CMS.[TMO(CMS)]								AS VL_TMO_CMS
+    ,CMS.[TMO(SEG)]								AS VL_TMO_SEG
+    ,CMS.[TME(CMS)]								AS VL_TME_CMS
+    ,CMS.[TME(SEG)]								AS VL_TME_SEG
+    ,CMS.[ATEND 0 - A2]							AS NR_ATEND_0_A_A2
+    ,CMS.[ATEND A2 - A3]						AS NR_ATEND_A2_A_A3
+    ,CMS.[ATEND A3 - A5]						AS NR_ATEND_A3_A_A5
+    ,CMS.[ATEND &gt; A5]							AS NR_ATEND_MAIOR_A5
+    ,CMS.[ABAN 0 - A2]							AS NR_ABAN_0_A_A2
+    ,CMS.[ABAN &gt; A5]							AS NR_ABAN_MAIOR_A5
+    ,CMS.[CHAMS ABAND]							AS NR_CHAMS_ABAND
+    ,CMS.[TEMPO DAC (SEG)]						AS NR_TEMPO_DAC_SEG
+    ,CMS.[TEMPO POS_AT (SEG)]					AS NR_TEMPO_POS_AT_SEG
+    ,CMS.[TEMPO TOCANDO (SEG)]					AS NR_TEMPO_TOCANDO_SEG
+    ,CMS.[TEMPO HOLD (SEG)]						AS NR_TEMPO_HOLD_SEG
+    ,CMS.[TRANS EXT]							AS NR_TRANS_EXT
+    ,CMS.[ATEND &gt; A6]							AS NR_ATEND_MAIOR_A6
+    ,CMS.[ABAN &gt; A6]							AS NR_ABAN_MAIOR_A6
+    ,CMS.[TOTAL ATEND ATE A1]					AS NR_TOTAL_ATEND_ATE_A1
+    ,CMS.[TOTAL ATEND ATE A2]					AS NR_TOTAL_ATEND_ATE_A2
+    ,CMS.[TOTAL ATEND ATE A3]					AS NR_TOTAL_ATEND_ATE_A3
+    ,CMS.[TOTAL ATEND ATE A4]					AS NR_TOTAL_ATEND_ATE_A4
+    ,CMS.[TOTAL ATEND ATE A5]					AS NR_TOTAL_ATEND_ATE_A5
+    ,CMS.[TOTAL ATEND ATE A6]					AS NR_TOTAL_ATEND_ATE_A6
+    ,CMS.[TOTAL ABAND ATE A1]					AS NR_TOTAL_ABAND_ATE_A1
+    ,CMS.[TOTAL ABAND ATE A2]					AS NR_TOTAL_ABAND_ATE_A2
+    ,CMS.[TOTAL ABAND ATE A3]					AS NR_TOTAL_ABAND_ATE_A3
+    ,CMS.[TOTAL ABAND ATE A4]					AS NR_TOTAL_ABAND_ATE_A4
+    ,CMS.[TOTAL ABAND ATE A5]					AS NR_TOTAL_ABAND_ATE_A5
+    ,CMS.[TOTAL ABAND ATE A6]					AS NR_TOTAL_ABAND_ATE_A6
+    ,CMS.[CHAM FORA DA CENTRAL]					AS NR_CHAM_FORA_DA_CENTRAL
+    ,CMS.[TEMPO MEDIO FORA DA CENTRAL (SEG)]	AS VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG
+    ,CMS.[TEMPO DAC FORA DA CENTRAL (SEG)]		AS NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG
+    ,CMS.[CHAMS RAMAL SAIDA]					AS NR_CHAMS_RAMAL_SAIDA
+    ,CMS.[TEMPO MEDIO RAMAL SAIDA (SEG)]		AS VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG
+    ,CMS.[TEMPO RAMAL SAIDA (SEG)]				AS NR_TEMPO_RAMAL_SAIDA_SEG
+    ,CMS.[ANSTIME (SEG)]						AS NR_ANSTIME_SEG
+    ,CMS.[CHAMS OCUP FORCADO]					AS NR_CHAMS_OCUP_FORCADO
+    ,CMS.[CHAMS RVDAS FILAS]					AS NR_CHAMS_RVDAS_FILAS
+    ,CMS.[CHAMS DESC FORCADA]					AS NR_CHAMS_DESC_FORCADA
+    ,CMS.[FLUXO SAIDA]							AS NR_FLUXO_SAIDA
+    ,CMS.[CHAM CONF]							AS NR_CHAM_CONF
+    ,CMS.[CHAM ATEND ACEITAVEL]					AS NR_CHAM_ATEND_ACEITAVEL
+    ,CMS.[CHAM ABAND ACEITAVEL]					AS NR_CHAM_ABAND_ACEITAVEL
+    ,CMS.[TEMPO MAXIMO DE ESPERA]				AS NR_TEMPO_MAXIMO_DE_ESPERA
+    ,CMS.[TEMPO MED ABAN (SEG)]					AS VL_TEMPO_MED_ABAN_SEG
+FROM [DB_REP_CMS].[DBO].[10_155_0_93_SAMSUNG_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA] AS CMS
+LEFT JOIN  (SELECT 
+	ROW_NUMBER() OVER(PARTITION BY [SKILL_CODIGO] ORDER BY SKILL_HIERARQUIA_ID DESC, OPERACAO_ID DESC) AS NR_ORDEM
+    ,[SKILL_ID]									AS NR_SKILL_ID
+    ,[SKILL_CODIGO]								AS NM_SKILL_CODIGO
+    ,[SKILL_NOME]								AS NM_SKILL_NOME
+    ,[SKILL_SITE]								AS NM_SKILL_SITE
+    ,[SKILL_DAC]								AS NR_SKILL_DAC
+    ,[DAC_SITE_NOME]							AS NM_DAC_SITE_NOME
+    ,[DAC_ATIVO]								AS NM_DAC_ATIVO
+    ,[DAC_CRIADO_EM]							AS DT_DAC_CRIADO_EM
+    ,[PILAR_NOME]								AS NM_PILAR_NOME
+    ,[OPERACAO_NOME]							AS NM_OPERACAO_NOME
+    ,[CELULA_NOME]								AS NM_CELULA_NOME
+    ,[SEGMENTO_NOME]							AS NM_SEGMENTO_NOME
+    ,[PROGRAMA_NOME]							AS NM_PROGRAMA_NOME
+    ,[PROGRAMA_VIGENCIA_INICIO]					AS DT_PROGRAMA_VIGENCIA_INICIO
+    ,[PROGRAMA_VIGENCIA_FIM]					AS DT_PROGRAMA_VIGENCIA_FIM
+    ,[PROGRAMA_DIRETORIA_EXEC_BI_NOME]			AS NM_PROGRAMA_DIRETORIA_EXEC_BI_NOME	
+    ,[PROGRAMA_DAC_ID]							AS NR_PROGRAMA_DAC_ID
+    ,[PROGRAMA_DAC_NOME]						AS NM_PROGRAMA_DAC_NOME
+    ,[PROGRAMA_ATIVO]							AS NM_PROGRAMA_ATIVO
+    ,[ORGANIZACAO_NOME]							AS NM_ORGANIZACAO_NOME
+    ,[ORGANIZACAO_WFM]							AS NM_ORGANIZACAO_WFM
+    ,[ORGANIZACAO_CRIADO_EM]					AS DT_ORGANIZACAO_CRIADO_EM
+    ,[ORGANIZACAO_ATIVO]						AS NM_ORGANIZACAO_ATIVO
+FROM
+	[DB_REP_ADM].[DBO].[VW_PROGRAMA_SKILL]
+WHERE 
+	[DIRETORIA_NOME] LIKE '%SAMS%')	AS ADM
+	ON CMS.[SKILL] = ADM.[NM_SKILL_CODIGO]
+WHERE 
+	ADM.NR_ORDEM = 1
+	AND CONVERT(DATE, CMS.[DATA], 103) &gt;= '2019-01-01'</property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SQLCORP82]"
+                  connectionManagerRefId="Package.ConnectionManagers[SQLCORP82]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[DT_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_DATA]"
+                      length="10"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[DT_DATA]"
+                      name="DT_DATA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_SKILL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_SKILL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_SKILL]"
+                      name="NR_SKILL"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SKILL_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_SKILL_NOME]"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SKILL_NOME]"
+                      name="NM_SKILL_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PILAR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_PILAR_NOME]"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PILAR_NOME]"
+                      name="NM_PILAR_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_OPERACAO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_OPERACAO_NOME]"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_OPERACAO_NOME]"
+                      name="NM_OPERACAO_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_CELULA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_CELULA_NOME]"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_CELULA_NOME]"
+                      name="NM_CELULA_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SEGMENTO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_SEGMENTO_NOME]"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SEGMENTO_NOME]"
+                      name="NM_SEGMENTO_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PROGRAMA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_PROGRAMA_NOME]"
+                      length="150"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PROGRAMA_NOME]"
+                      name="NM_PROGRAMA_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_HORARIO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_HORARIO]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_HORARIO]"
+                      name="NR_HORARIO"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_PERMS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_PERMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_PERMS]"
+                      name="NR_CHAMS_PERMS"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ATEND]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_ATEND]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ATEND]"
+                      name="NR_CHAMS_ATEND"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_NIVEL_AT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_NIVEL_AT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_NIVEL_AT]"
+                      name="VL_NIVEL_AT"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_FCL09_AT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_FCL09_AT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_FCL09_AT]"
+                      name="VL_FCL09_AT"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_CMS]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TMO_CMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_CMS]"
+                      name="VL_TMO_CMS"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_SEG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TMO_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_SEG]"
+                      name="VL_TMO_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_CMS]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TME_CMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_CMS]"
+                      name="VL_TME_CMS"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_SEG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TME_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_SEG]"
+                      name="VL_TME_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_0_A_A2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_0_A_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_0_A_A2]"
+                      name="NR_ATEND_0_A_A2"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A2_A_A3]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_A2_A_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A2_A_A3]"
+                      name="NR_ATEND_A2_A_A3"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A3_A_A5]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_A3_A_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A3_A_A5]"
+                      name="NR_ATEND_A3_A_A5"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A5]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_MAIOR_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A5]"
+                      name="NR_ATEND_MAIOR_A5"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_0_A_A2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_0_A_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_0_A_A2]"
+                      name="NR_ABAN_0_A_A2"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A5]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_MAIOR_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A5]"
+                      name="NR_ABAN_MAIOR_A5"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ABAND]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_ABAND]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ABAND]"
+                      name="NR_CHAMS_ABAND"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_DAC_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_SEG]"
+                      name="NR_TEMPO_DAC_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_POS_AT_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_POS_AT_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_POS_AT_SEG]"
+                      name="NR_TEMPO_POS_AT_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_TOCANDO_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]"
+                      name="NR_TEMPO_TOCANDO_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_HOLD_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_HOLD_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_HOLD_SEG]"
+                      name="NR_TEMPO_HOLD_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TRANS_EXT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TRANS_EXT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TRANS_EXT]"
+                      name="NR_TRANS_EXT"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A6]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_MAIOR_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A6]"
+                      name="NR_ATEND_MAIOR_A6"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A6]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_MAIOR_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A6]"
+                      name="NR_ABAN_MAIOR_A6"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A1]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]"
+                      name="NR_TOTAL_ATEND_ATE_A1"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]"
+                      name="NR_TOTAL_ATEND_ATE_A2"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]"
+                      name="NR_TOTAL_ATEND_ATE_A3"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A4]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]"
+                      name="NR_TOTAL_ATEND_ATE_A4"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]"
+                      name="NR_TOTAL_ATEND_ATE_A5"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]"
+                      name="NR_TOTAL_ATEND_ATE_A6"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A1]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]"
+                      name="NR_TOTAL_ABAND_ATE_A1"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]"
+                      name="NR_TOTAL_ABAND_ATE_A2"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]"
+                      name="NR_TOTAL_ABAND_ATE_A3"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A4]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]"
+                      name="NR_TOTAL_ABAND_ATE_A4"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]"
+                      name="NR_TOTAL_ABAND_ATE_A5"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]"
+                      name="NR_TOTAL_ABAND_ATE_A6"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_FORA_DA_CENTRAL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]"
+                      name="NR_CHAM_FORA_DA_CENTRAL"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      name="VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      name="NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_RAMAL_SAIDA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]"
+                      name="NR_CHAMS_RAMAL_SAIDA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      name="VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      name="NR_TEMPO_RAMAL_SAIDA_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ANSTIME_SEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ANSTIME_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ANSTIME_SEG]"
+                      name="NR_ANSTIME_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_OCUP_FORCADO]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]"
+                      name="NR_CHAMS_OCUP_FORCADO"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_RVDAS_FILAS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]"
+                      name="NR_CHAMS_RVDAS_FILAS"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_DESC_FORCADA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_DESC_FORCADA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_DESC_FORCADA]"
+                      name="NR_CHAMS_DESC_FORCADA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_FLUXO_SAIDA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_FLUXO_SAIDA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_FLUXO_SAIDA]"
+                      name="NR_FLUXO_SAIDA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_CONF]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_CONF]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_CONF]"
+                      name="NR_CHAM_CONF"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_ATEND_ACEITAVEL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]"
+                      name="NR_CHAM_ATEND_ACEITAVEL"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_ABAND_ACEITAVEL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]"
+                      name="NR_CHAM_ABAND_ACEITAVEL"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      name="NR_TEMPO_MAXIMO_DE_ESPERA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MED_ABAN_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]"
+                      name="VL_TEMPO_MED_ABAN_SEG"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="DT_DATA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_SKILL]"
+                      dataType="i4"
+                      name="NR_SKILL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_SKILL_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_SKILL_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_PILAR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_PILAR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_OPERACAO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_OPERACAO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_CELULA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_CELULA_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_SEGMENTO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_SEGMENTO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_PROGRAMA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="NM_PROGRAMA_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_HORARIO]"
+                      dataType="i4"
+                      name="NR_HORARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_PERMS]"
+                      dataType="i4"
+                      name="NR_CHAMS_PERMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_ATEND]"
+                      dataType="i4"
+                      name="NR_CHAMS_ATEND" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_NIVEL_AT]"
+                      dataType="r8"
+                      name="VL_NIVEL_AT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_FCL09_AT]"
+                      dataType="r8"
+                      name="VL_FCL09_AT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TMO_CMS]"
+                      dataType="r8"
+                      name="VL_TMO_CMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TMO_SEG]"
+                      dataType="r8"
+                      name="VL_TMO_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TME_CMS]"
+                      dataType="r8"
+                      name="VL_TME_CMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TME_SEG]"
+                      dataType="r8"
+                      name="VL_TME_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_0_A_A2]"
+                      dataType="i4"
+                      name="NR_ATEND_0_A_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_A2_A_A3]"
+                      dataType="i4"
+                      name="NR_ATEND_A2_A_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_A3_A_A5]"
+                      dataType="i4"
+                      name="NR_ATEND_A3_A_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_MAIOR_A5]"
+                      dataType="i4"
+                      name="NR_ATEND_MAIOR_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_0_A_A2]"
+                      dataType="i4"
+                      name="NR_ABAN_0_A_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_MAIOR_A5]"
+                      dataType="i4"
+                      name="NR_ABAN_MAIOR_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_ABAND]"
+                      dataType="i4"
+                      name="NR_CHAMS_ABAND" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_DAC_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_DAC_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_POS_AT_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_POS_AT_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_TOCANDO_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_TOCANDO_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_HOLD_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_HOLD_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TRANS_EXT]"
+                      dataType="i4"
+                      name="NR_TRANS_EXT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ATEND_MAIOR_A6]"
+                      dataType="i4"
+                      name="NR_ATEND_MAIOR_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ABAN_MAIOR_A6]"
+                      dataType="i4"
+                      name="NR_ABAN_MAIOR_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A1]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A1" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A2]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A3]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A4]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A4" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A5]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A6]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A1]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A1" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A2]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A3]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A4]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A4" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A5]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A6]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_FORA_DA_CENTRAL]"
+                      dataType="i4"
+                      name="NR_CHAM_FORA_DA_CENTRAL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_RAMAL_SAIDA]"
+                      dataType="i4"
+                      name="NR_CHAMS_RAMAL_SAIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_RAMAL_SAIDA_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_ANSTIME_SEG]"
+                      dataType="i4"
+                      name="NR_ANSTIME_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_OCUP_FORCADO]"
+                      dataType="i4"
+                      name="NR_CHAMS_OCUP_FORCADO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_RVDAS_FILAS]"
+                      dataType="i4"
+                      name="NR_CHAMS_RVDAS_FILAS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAMS_DESC_FORCADA]"
+                      dataType="i4"
+                      name="NR_CHAMS_DESC_FORCADA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_FLUXO_SAIDA]"
+                      dataType="i4"
+                      name="NR_FLUXO_SAIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_CONF]"
+                      dataType="i4"
+                      name="NR_CHAM_CONF" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_ATEND_ACEITAVEL]"
+                      dataType="i4"
+                      name="NR_CHAM_ATEND_ACEITAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_CHAM_ABAND_ACEITAVEL]"
+                      dataType="i4"
+                      name="NR_CHAM_ABAND_ACEITAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      dataType="i4"
+                      name="NR_TEMPO_MAXIMO_DE_ESPERA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_TEMPO_MED_ABAN_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MED_ABAN_SEG" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_DATA]"
+                      name="DT_DATA" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_SKILL]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_SKILL]"
+                      name="NR_SKILL" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_SKILL_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_SKILL_NOME]"
+                      name="NM_SKILL_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_PILAR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_PILAR_NOME]"
+                      name="NM_PILAR_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_OPERACAO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_OPERACAO_NOME]"
+                      name="NM_OPERACAO_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_CELULA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_CELULA_NOME]"
+                      name="NM_CELULA_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_SEGMENTO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_SEGMENTO_NOME]"
+                      name="NM_SEGMENTO_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_PROGRAMA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_PROGRAMA_NOME]"
+                      name="NM_PROGRAMA_NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_HORARIO]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_HORARIO]"
+                      name="NR_HORARIO" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_PERMS]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_PERMS]"
+                      name="NR_CHAMS_PERMS" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_ATEND]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_ATEND]"
+                      name="NR_CHAMS_ATEND" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_NIVEL_AT]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_NIVEL_AT]"
+                      name="VL_NIVEL_AT" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_FCL09_AT]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_FCL09_AT]"
+                      name="VL_FCL09_AT" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TMO_CMS]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TMO_CMS]"
+                      name="VL_TMO_CMS" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TMO_SEG]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TMO_SEG]"
+                      name="VL_TMO_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TME_CMS]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TME_CMS]"
+                      name="VL_TME_CMS" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TME_SEG]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TME_SEG]"
+                      name="VL_TME_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_0_A_A2]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_0_A_A2]"
+                      name="NR_ATEND_0_A_A2" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_A2_A_A3]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_A2_A_A3]"
+                      name="NR_ATEND_A2_A_A3" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_A3_A_A5]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_A3_A_A5]"
+                      name="NR_ATEND_A3_A_A5" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_MAIOR_A5]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_MAIOR_A5]"
+                      name="NR_ATEND_MAIOR_A5" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_0_A_A2]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_0_A_A2]"
+                      name="NR_ABAN_0_A_A2" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_MAIOR_A5]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_MAIOR_A5]"
+                      name="NR_ABAN_MAIOR_A5" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_ABAND]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_ABAND]"
+                      name="NR_CHAMS_ABAND" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_DAC_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_DAC_SEG]"
+                      name="NR_TEMPO_DAC_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_POS_AT_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_POS_AT_SEG]"
+                      name="NR_TEMPO_POS_AT_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]"
+                      name="NR_TEMPO_TOCANDO_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_HOLD_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_HOLD_SEG]"
+                      name="NR_TEMPO_HOLD_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TRANS_EXT]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TRANS_EXT]"
+                      name="NR_TRANS_EXT" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_MAIOR_A6]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ATEND_MAIOR_A6]"
+                      name="NR_ATEND_MAIOR_A6" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_MAIOR_A6]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ABAN_MAIOR_A6]"
+                      name="NR_ABAN_MAIOR_A6" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]"
+                      name="NR_TOTAL_ATEND_ATE_A1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]"
+                      name="NR_TOTAL_ATEND_ATE_A2" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]"
+                      name="NR_TOTAL_ATEND_ATE_A3" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]"
+                      name="NR_TOTAL_ATEND_ATE_A4" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]"
+                      name="NR_TOTAL_ATEND_ATE_A5" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]"
+                      name="NR_TOTAL_ATEND_ATE_A6" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]"
+                      name="NR_TOTAL_ABAND_ATE_A1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]"
+                      name="NR_TOTAL_ABAND_ATE_A2" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]"
+                      name="NR_TOTAL_ABAND_ATE_A3" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]"
+                      name="NR_TOTAL_ABAND_ATE_A4" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]"
+                      name="NR_TOTAL_ABAND_ATE_A5" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]"
+                      name="NR_TOTAL_ABAND_ATE_A6" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]"
+                      name="NR_CHAM_FORA_DA_CENTRAL" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      name="VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      name="NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]"
+                      name="NR_CHAMS_RAMAL_SAIDA" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      name="VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      name="NR_TEMPO_RAMAL_SAIDA_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ANSTIME_SEG]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_ANSTIME_SEG]"
+                      name="NR_ANSTIME_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]"
+                      name="NR_CHAMS_OCUP_FORCADO" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]"
+                      name="NR_CHAMS_RVDAS_FILAS" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_DESC_FORCADA]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAMS_DESC_FORCADA]"
+                      name="NR_CHAMS_DESC_FORCADA" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_FLUXO_SAIDA]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_FLUXO_SAIDA]"
+                      name="NR_FLUXO_SAIDA" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_CONF]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_CONF]"
+                      name="NR_CHAM_CONF" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]"
+                      name="NR_CHAM_ATEND_ACEITAVEL" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]"
+                      name="NR_CHAM_ABAND_ACEITAVEL" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      name="NR_TEMPO_MAXIMO_DE_ESPERA" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]"
+                      dataType="r8"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]"
+                      name="VL_TEMPO_MED_ABAN_SEG" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BRSBESRV960.DB_SAMSUNG]"
+                  connectionManagerRefId="Package.ConnectionManagers[BRSBESRV960.DB_SAMSUNG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[DT_DATA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="DT_DATA"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[DT_DATA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[DT_DATA]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_SKILL]"
+                      cachedDataType="i4"
+                      cachedName="NR_SKILL"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_SKILL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_SKILL]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_SKILL_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NM_SKILL_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SKILL_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SKILL_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_PILAR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NM_PILAR_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PILAR_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PILAR_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_OPERACAO_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NM_OPERACAO_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_OPERACAO_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_OPERACAO_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_CELULA_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NM_CELULA_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CELULA_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_CELULA_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_SEGMENTO_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NM_SEGMENTO_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SEGMENTO_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_SEGMENTO_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NM_PROGRAMA_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="NM_PROGRAMA_NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROGRAMA_NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NM_PROGRAMA_NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_HORARIO]"
+                      cachedDataType="i4"
+                      cachedName="NR_HORARIO"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_HORARIO]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_HORARIO]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_PERMS]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_PERMS"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_PERMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_PERMS]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_ATEND]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_ATEND"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_ATEND]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ATEND]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_NIVEL_AT]"
+                      cachedDataType="r8"
+                      cachedName="VL_NIVEL_AT"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_NIVEL_AT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_NIVEL_AT]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_FCL09_AT]"
+                      cachedDataType="r8"
+                      cachedName="VL_FCL09_AT"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_FCL09_AT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_FCL09_AT]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TMO_CMS]"
+                      cachedDataType="r8"
+                      cachedName="VL_TMO_CMS"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TMO_CMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_CMS]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TMO_SEG]"
+                      cachedDataType="r8"
+                      cachedName="VL_TMO_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TMO_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TMO_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TME_CMS]"
+                      cachedDataType="r8"
+                      cachedName="VL_TME_CMS"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TME_CMS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_CMS]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TME_SEG]"
+                      cachedDataType="r8"
+                      cachedName="VL_TME_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TME_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TME_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ATEND_0_A_A2]"
+                      cachedDataType="i4"
+                      cachedName="NR_ATEND_0_A_A2"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_0_A_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_0_A_A2]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ATEND_A2_A_A3]"
+                      cachedDataType="i4"
+                      cachedName="NR_ATEND_A2_A_A3"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_A2_A_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A2_A_A3]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ATEND_A3_A_A5]"
+                      cachedDataType="i4"
+                      cachedName="NR_ATEND_A3_A_A5"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_A3_A_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_A3_A_A5]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ATEND_MAIOR_A5]"
+                      cachedDataType="i4"
+                      cachedName="NR_ATEND_MAIOR_A5"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_MAIOR_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A5]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ABAN_0_A_A2]"
+                      cachedDataType="i4"
+                      cachedName="NR_ABAN_0_A_A2"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_0_A_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_0_A_A2]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ABAN_MAIOR_A5]"
+                      cachedDataType="i4"
+                      cachedName="NR_ABAN_MAIOR_A5"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_MAIOR_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A5]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_ABAND]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_ABAND"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_ABAND]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_ABAND]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_DAC_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_DAC_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_DAC_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_POS_AT_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_POS_AT_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_POS_AT_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_POS_AT_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_TOCANDO_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_TOCANDO_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_TOCANDO_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_HOLD_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_HOLD_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_HOLD_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_HOLD_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TRANS_EXT]"
+                      cachedDataType="i4"
+                      cachedName="NR_TRANS_EXT"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TRANS_EXT]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TRANS_EXT]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ATEND_MAIOR_A6]"
+                      cachedDataType="i4"
+                      cachedName="NR_ATEND_MAIOR_A6"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_MAIOR_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ATEND_MAIOR_A6]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ABAN_MAIOR_A6]"
+                      cachedDataType="i4"
+                      cachedName="NR_ABAN_MAIOR_A6"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_MAIOR_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ABAN_MAIOR_A6]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A1"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A1]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A1]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A2"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A2]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A3"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A3]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A4"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A4]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A4]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A5"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A5]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ATEND_ATE_A6"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ATEND_ATE_A6]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A1"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A1]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A1]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A2"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A2]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A2]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A3"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A3]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A3]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A4"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A4]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A4]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A5"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A5]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A5]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]"
+                      cachedDataType="i4"
+                      cachedName="NR_TOTAL_ABAND_ATE_A6"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A6]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TOTAL_ABAND_ATE_A6]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAM_FORA_DA_CENTRAL"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_FORA_DA_CENTRAL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_FORA_DA_CENTRAL]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      cachedDataType="r8"
+                      cachedName="VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_RAMAL_SAIDA"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_RAMAL_SAIDA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RAMAL_SAIDA]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      cachedDataType="r8"
+                      cachedName="VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_RAMAL_SAIDA_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_RAMAL_SAIDA_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_ANSTIME_SEG]"
+                      cachedDataType="i4"
+                      cachedName="NR_ANSTIME_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ANSTIME_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_ANSTIME_SEG]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_OCUP_FORCADO"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_OCUP_FORCADO]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_OCUP_FORCADO]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_RVDAS_FILAS"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_RVDAS_FILAS]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_RVDAS_FILAS]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAMS_DESC_FORCADA]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAMS_DESC_FORCADA"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_DESC_FORCADA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAMS_DESC_FORCADA]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_FLUXO_SAIDA]"
+                      cachedDataType="i4"
+                      cachedName="NR_FLUXO_SAIDA"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_FLUXO_SAIDA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_FLUXO_SAIDA]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAM_CONF]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAM_CONF"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_CONF]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_CONF]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAM_ATEND_ACEITAVEL"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_ATEND_ACEITAVEL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ATEND_ACEITAVEL]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]"
+                      cachedDataType="i4"
+                      cachedName="NR_CHAM_ABAND_ACEITAVEL"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_ABAND_ACEITAVEL]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_CHAM_ABAND_ACEITAVEL]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      cachedDataType="i4"
+                      cachedName="NR_TEMPO_MAXIMO_DE_ESPERA"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[NR_TEMPO_MAXIMO_DE_ESPERA]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]"
+                      cachedDataType="r8"
+                      cachedName="VL_TEMPO_MED_ABAN_SEG"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MED_ABAN_SEG]"
+                      lineageId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB].Columns[VL_TEMPO_MED_ABAN_SEG]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[DT_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="DT_DATA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_SKILL]"
+                      dataType="i4"
+                      name="NR_SKILL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SKILL_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_SKILL_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PILAR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_PILAR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_OPERACAO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_OPERACAO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_CELULA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_CELULA_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_SEGMENTO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NM_SEGMENTO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_PROGRAMA_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="NM_PROGRAMA_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_HORARIO]"
+                      dataType="i4"
+                      name="NR_HORARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_PERMS]"
+                      dataType="i4"
+                      name="NR_CHAMS_PERMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_ATEND]"
+                      dataType="i4"
+                      name="NR_CHAMS_ATEND" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_NIVEL_AT]"
+                      dataType="r8"
+                      name="VL_NIVEL_AT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_FCL09_AT]"
+                      dataType="r8"
+                      name="VL_FCL09_AT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TMO_CMS]"
+                      dataType="r8"
+                      name="VL_TMO_CMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TMO_SEG]"
+                      dataType="r8"
+                      name="VL_TMO_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TME_CMS]"
+                      dataType="r8"
+                      name="VL_TME_CMS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TME_SEG]"
+                      dataType="r8"
+                      name="VL_TME_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_0_A_A2]"
+                      dataType="i4"
+                      name="NR_ATEND_0_A_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_A2_A_A3]"
+                      dataType="i4"
+                      name="NR_ATEND_A2_A_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_A3_A_A5]"
+                      dataType="i4"
+                      name="NR_ATEND_A3_A_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_MAIOR_A5]"
+                      dataType="i4"
+                      name="NR_ATEND_MAIOR_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_0_A_A2]"
+                      dataType="i4"
+                      name="NR_ABAN_0_A_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_MAIOR_A5]"
+                      dataType="i4"
+                      name="NR_ABAN_MAIOR_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_ABAND]"
+                      dataType="i4"
+                      name="NR_CHAMS_ABAND" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_DAC_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_DAC_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_POS_AT_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_POS_AT_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_TOCANDO_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_TOCANDO_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_HOLD_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_HOLD_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TRANS_EXT]"
+                      dataType="i4"
+                      name="NR_TRANS_EXT" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ATEND_MAIOR_A6]"
+                      dataType="i4"
+                      name="NR_ATEND_MAIOR_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ABAN_MAIOR_A6]"
+                      dataType="i4"
+                      name="NR_ABAN_MAIOR_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A1]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A1" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A2]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A3]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A4]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A4" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A5]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ATEND_ATE_A6]"
+                      dataType="i4"
+                      name="NR_TOTAL_ATEND_ATE_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A1]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A1" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A2]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A3]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A3" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A4]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A4" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A5]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A5" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TOTAL_ABAND_ATE_A6]"
+                      dataType="i4"
+                      name="NR_TOTAL_ABAND_ATE_A6" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_FORA_DA_CENTRAL]"
+                      dataType="i4"
+                      name="NR_CHAM_FORA_DA_CENTRAL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MEDIO_FORA_DA_CENTRAL_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_DAC_FORA_DA_CENTRAL_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_RAMAL_SAIDA]"
+                      dataType="i4"
+                      name="NR_CHAMS_RAMAL_SAIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MEDIO_RAMAL_SAIDA_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_RAMAL_SAIDA_SEG]"
+                      dataType="i4"
+                      name="NR_TEMPO_RAMAL_SAIDA_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_ANSTIME_SEG]"
+                      dataType="i4"
+                      name="NR_ANSTIME_SEG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_OCUP_FORCADO]"
+                      dataType="i4"
+                      name="NR_CHAMS_OCUP_FORCADO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_RVDAS_FILAS]"
+                      dataType="i4"
+                      name="NR_CHAMS_RVDAS_FILAS" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAMS_DESC_FORCADA]"
+                      dataType="i4"
+                      name="NR_CHAMS_DESC_FORCADA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_FLUXO_SAIDA]"
+                      dataType="i4"
+                      name="NR_FLUXO_SAIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_CONF]"
+                      dataType="i4"
+                      name="NR_CHAM_CONF" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_ATEND_ACEITAVEL]"
+                      dataType="i4"
+                      name="NR_CHAM_ATEND_ACEITAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_CHAM_ABAND_ACEITAVEL]"
+                      dataType="i4"
+                      name="NR_CHAM_ABAND_ACEITAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[NR_TEMPO_MAXIMO_DE_ESPERA]"
+                      dataType="i4"
+                      name="NR_TEMPO_MAXIMO_DE_ESPERA" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB].ExternalColumns[VL_TEMPO_MED_ABAN_SEG]"
+                      dataType="r8"
+                      name="VL_TEMPO_MED_ABAN_SEG" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+              endId="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados\SQLCORP82.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{606EA92C-5D77-4292-ABC0-9CD44EF7D31A}"
+      DTS:From="Package\DELETE_TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Tarefa Fluxo de Dados" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="448,42"
+          Id="Package\DELETE_TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+          TopLeft="56,36" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Tarefa Fluxo de Dados"
+          TopLeft="293,194" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="280,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106.5,116"
+              Start="0,0"
+              End="106.5,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54"
+                    Point2="0,58"
+                    Point3="4,58" />
+                  <mssgle:LineSegment
+                    End="102.5,58" />
+                  <mssgle:CubicBezierSegment
+                    Point1="102.5,58"
+                    Point2="106.5,58"
+                    Point3="106.5,62" />
+                  <mssgle:LineSegment
+                    End="106.5,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="405,42"
+          Id="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA"
+          TopLeft="234,203" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Tarefa Fluxo de Dados\SQLCORP82"
+          TopLeft="109,25" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+          TopLeft="178,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="258.5,136"
+              Start="0,0"
+              End="258.5,128.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,64"
+                    Point2="0,68"
+                    Point3="4,68" />
+                  <mssgle:LineSegment
+                    End="254.5,68" />
+                  <mssgle:CubicBezierSegment
+                    Point1="254.5,68"
+                    Point2="258.5,68"
+                    Point3="258.5,72" />
+                  <mssgle:LineSegment
+                    End="258.5,128.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\SQLCORP82">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\TB_SAMS_CMS_DESEMP_SERV_INTERV_GR_DIV_MIS_01_HORARIA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

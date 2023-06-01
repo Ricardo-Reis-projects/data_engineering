@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PRJ_CARGA_SAP_GATA", "PRJ_CARGA_SAP_GATA\PRJ_CARGA_SAP_GATA.dtproj", "{E83ABC94-95F4-4F25-B444-ADCB5C0C297D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E83ABC94-95F4-4F25-B444-ADCB5C0C297D}.Development|Default.ActiveCfg = Development
+		{E83ABC94-95F4-4F25-B444-ADCB5C0C297D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

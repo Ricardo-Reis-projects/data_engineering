@@ -1,0 +1,792 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2019 1:41:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GMODE-13"
+  DTS:CreatorName="GMODE-13\GMODE-13"
+  DTS:DTSID="{5D95FADF-0ABF-4F43-B3AA-4C5004E91C28}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Carga_st_BASE_BI_PENDING"
+  DTS:PackageType="5"
+  DTS:VersionBuild="204"
+  DTS:VersionGUID="{BFBD100E-7D55-4040-860F-50659EEB9E87}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SanSumgBiConn]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{9C1E5F37-9C02-48EE-B672-3FACA05939EF}"
+      DTS:ObjectName="SanSumgBiConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_SAMSUNG;Integrated Security=True;Application Name=SSIS-Carga_st_BASE_BI_PENDING-{9C1E5F37-9C02-48EE-B672-3FACA05939EF}BRSBESRV960.DB_SAMSUNG;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[st_BASE_BI_PENDING]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{91C77557-0EED-4C0E-9221-FD280B7FCBE2}"
+      DTS:ObjectName="st_BASE_BI_PENDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\BASE_BI_PENDING.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES;IMEX=1&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{A4CE7597-A1A5-4CBB-B423-CB28B8966198}"
+      DTS:ObjectName="IdArquivoMIS">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">22</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F1ECC37D-9D92-4FF0-B0AC-50F076CDF200}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdLog">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{028A14A3-C7A7-4CA8-9453-D26A9AD6D20F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NomeArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5D54165-AE26-4F56-B07A-C6AFDB877309}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PathArquivo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Finaliza Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Finaliza Processamento"
+      DTS:DTSID="{48977983-C642-4130-8445-23360BF08075}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Finaliza Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_9014bada847c4222b5161f213d777654"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inicia Processamento"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{6AB49CEC-D5B4-4345-9A11-9CC2BA4C3ED5}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicia Processamento"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_087285ccd6934de0af1e3808abf8a4d9"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpa tabela Staging st_BASE_BI_PENDING"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1CAE114B-073F-4575-A91D-AD6D7911DCF6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpa tabela Staging st_BASE_BI_PENDING"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9C1E5F37-9C02-48EE-B672-3FACA05939EF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table st_BASE_BI_PENDING" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\st_BASE_BI_PENDING"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C760F326-6594-44D0-9966-B3F7277675C0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="st_BASE_BI_PENDING"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\st_BASE_BI_PENDING\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; Â© Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."St_BASE_BI_PENDING"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SanSumgBiConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[SanSumgBiConn]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Posting Date]"
+                      cachedDataType="date"
+                      cachedName="Posting Date"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Posting Date]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Posting Date]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Transaction Number]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Transaction Number"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Transaction Number]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Number]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Transaction Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Transaction Type"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Transaction Type]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Type]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Service Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Service Type"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Service Type]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Type]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Service Center]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Service Center"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Service Center]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Center]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Count]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Count"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Count]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Count]" />
+                    <inputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DT_EXTRACAO]"
+                      cachedDataType="date"
+                      cachedName="DT_EXTRACAO"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_EXTRACAO]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[DT_EXTRACAO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Posting Date]"
+                      dataType="dbTimeStamp"
+                      name="Posting Date" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Transaction Number]"
+                      dataType="wstr"
+                      length="255"
+                      name="Transaction Number" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Transaction Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Transaction Type" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Service Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Type" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Service Center]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Center" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Count]"
+                      dataType="i4"
+                      name="Count" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DT_EXTRACAO]"
+                      dataType="dbTimeStamp"
+                      name="DT_EXTRACAO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\st_BASE_BI_PENDING\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\st_BASE_BI_PENDING\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\st_BASE_BI_PENDING\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">base$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\st_BASE_BI_PENDING\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[st_BASE_BI_PENDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[st_BASE_BI_PENDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Posting Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Posting Date]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Posting Date]"
+                      name="Posting Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Number]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction Number]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Number]"
+                      name="Transaction Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction Type]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Transaction Type]"
+                      name="Transaction Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Status]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Type]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Type]"
+                      name="Service Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Center]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Center]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Service Center]"
+                      name="Service Center"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Count]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Count]"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[Count]"
+                      name="Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[DT_EXTRACAO]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[DT_EXTRACAO]"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].Columns[DT_EXTRACAO]"
+                      name="DT_EXTRACAO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Posting Date]"
+                      dataType="date"
+                      name="Posting Date" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction Number]"
+                      dataType="wstr"
+                      length="255"
+                      name="Transaction Number" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Transaction Type" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Type" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Center]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Center" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[Count]"
+                      dataType="r8"
+                      name="Count" />
+                    <externalMetadataColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output].ExternalColumns[DT_EXTRACAO]"
+                      dataType="date"
+                      name="DT_EXTRACAO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Posting Date]"
+                      dataType="date"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Posting Date]"
+                      name="Posting Date" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction Number]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction Number]"
+                      name="Transaction Number" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction Type]"
+                      name="Transaction Type" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Service Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Service Type]"
+                      name="Service Type" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Service Center]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Service Center]"
+                      name="Service Center" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Count]"
+                      dataType="r8"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[Count]"
+                      name="Count" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[DT_EXTRACAO]"
+                      dataType="date"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[DT_EXTRACAO]"
+                      name="DT_EXTRACAO" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\st_BASE_BI_PENDING.Paths[Excel Source Output]"
+              endId="Package\st_BASE_BI_PENDING\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\st_BASE_BI_PENDING\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C59ADA09-DCBB-4A90-9776-E56A41F5C309}"
+      DTS:From="Package\Inicia Processamento"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Limpa tabela Staging st_BASE_BI_PENDING" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6794D2C5-2B86-447E-945E-639930D8F7B4}"
+      DTS:From="Package\Limpa tabela Staging st_BASE_BI_PENDING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\st_BASE_BI_PENDING" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E629FEE3-6257-4724-AD9B-4AC4427ABD20}"
+      DTS:From="Package\st_BASE_BI_PENDING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Finaliza Processamento" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="471,42"
+          Id="Package\Finaliza Processamento"
+          TopLeft="141.128826544514,374.518908800963" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Inicia Processamento"
+          TopLeft="284.3125,24" />
+        <NodeLayout
+          Size="286,42"
+          Id="Package\Limpa tabela Staging st_BASE_BI_PENDING"
+          TopLeft="229.5125,126.25" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\st_BASE_BI_PENDING"
+          TopLeft="266,257" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="373.1625,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.25"
+              Start="0,0"
+              End="0,52.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="372.5125,168.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.01249999999999,88.75"
+              Start="0,0"
+              End="-8.01249999999999,81.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.375"
+                    Point2="0,44.375"
+                    Point3="-4,44.375" />
+                  <mssgle:LineSegment
+                    End="-4.01249999999999,44.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.01249999999999,44.375"
+                    Point2="-8.01249999999999,44.375"
+                    Point3="-8.01249999999999,48.375" />
+                  <mssgle:LineSegment
+                    End="-8.01249999999999,81.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="364.5,299">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.128826544514,75.518908800963"
+              Start="0,0"
+              End="12.128826544514,68.018908800963">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.7594544004815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.7594544004815"
+                    Point2="0,37.7594544004815"
+                    Point3="4,37.7594544004815" />
+                  <mssgle:LineSegment
+                    End="8.12882654451403,37.7594544004815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.12882654451403,37.7594544004815"
+                    Point2="12.128826544514,37.7594544004815"
+                    Point3="12.128826544514,41.7594544004815" />
+                  <mssgle:LineSegment
+                    End="12.128826544514,68.018908800963" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\st_BASE_BI_PENDING">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\st_BASE_BI_PENDING\ADO NET Destination"
+          TopLeft="190,292" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\st_BASE_BI_PENDING\Excel Source"
+          TopLeft="230,100" />
+        <EdgeLayout
+          Id="Package\st_BASE_BI_PENDING.Paths[Excel Source Output]"
+          TopLeft="299.5,142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,150"
+              Start="0,0"
+              End="-20,142.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,71"
+                    Point2="0,75"
+                    Point3="-4,75" />
+                  <mssgle:LineSegment
+                    End="-16,75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16,75"
+                    Point2="-20,75"
+                    Point3="-20,79" />
+                  <mssgle:LineSegment
+                    End="-20,142.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\st_BASE_BI_PENDING\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\st_BASE_BI_PENDING\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

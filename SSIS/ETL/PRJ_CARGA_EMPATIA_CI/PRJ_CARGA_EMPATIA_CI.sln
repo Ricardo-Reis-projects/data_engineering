@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PRJ_CARGA_EMPATIA_CI", "PRJ_CARGA_EMPATIA_CI\PRJ_CARGA_EMPATIA_CI.dtproj", "{FBA50914-620E-49EB-B72C-0A36BC6CF5E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBA50914-620E-49EB-B72C-0A36BC6CF5E8}.Development|Default.ActiveCfg = Development
+		{FBA50914-620E-49EB-B72C-0A36BC6CF5E8}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

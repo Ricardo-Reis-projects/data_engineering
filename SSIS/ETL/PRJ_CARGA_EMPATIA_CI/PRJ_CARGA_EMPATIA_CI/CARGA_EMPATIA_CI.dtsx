@@ -1,0 +1,1438 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/26/2019 3:45:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A549043"
+  DTS:CreatorName="ATENTOBR\est_ab1314754"
+  DTS:DTSID="{232B1054-FE31-45F3-8DE2-C0803E340F34}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CARGA_EMPATIA_CI"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{5CBE7332-6CA2-4D76-966C-52891582C563}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8709823B-11A4-4AE1-9C0B-9B182C8A4B84}"
+      DTS:ObjectName="brsbesrv960.DB_SAMSUNG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=brsbesrv960;Initial Catalog=DB_SAMSUNG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{570EADB6-B517-44EC-9759-05E736A09EC7}"
+      DTS:ObjectName="Gerenciador de Conexões do Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\brsbesrv960\Publico\SAMSUNG\CargasETLs\BASE_EMPATIA_CI.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA_EMPATIA_CI"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{4671C1A5-494E-44D5-82D7-E89F88C5920A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA_EMPATIA_CI"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA_EMPATIA_CI\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Carimbo de data/hora]"
+                      cachedDataType="date"
+                      cachedName="Carimbo de data/hora"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[NOME ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOME "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[NOME ]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[OS ]"
+                      cachedDataType="r8"
+                      cachedName="OS "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[OS ]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CONTATO TELEFÔNICO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CONTATO TELEFÔNICO"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Os colaboradores da assistência técnica estavam uniformizados e "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O ambiente da autorizada estava: limpo, iluminado, organizado e "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="No caso de celular, os testes iniciais do atendimento foram real"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="No caso de celular, foi oferecido conserto rápido ou reparo expr"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O tempo previsto para reparo do produto foi cumprido pela assist"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O atendimento na assistência técnica foi realizado de maneira ed"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O atendente demonstrou atenção ao seu relato sobre o problema ap"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="O atendente levantou-se e identificou-se no momento que foi cham"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Em caso de reparo fora de garantia, o preço do orçamento apresen"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      cachedDataType="r8"
+                      cachedName="&quot;Com base na sua experiência de serviço, como você recomendaria "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[Precisa de algum suporte adicional? ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Precisa de algum suporte adicional? "
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Precisa de algum suporte adicional? ]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_carimbo_data]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_carimbo_data]"
+                      name="NM_carimbo_data"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_nome]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_nome]"
+                      name="NM_nome"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[NOME ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_os]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_os]"
+                      name="NM_os"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[OS ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_contato]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_contato]"
+                      name="NM_contato"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]"
+                      name="NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]"
+                      name="NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]"
+                      name="NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]"
+                      name="NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]"
+                      name="NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]"
+                      name="NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]"
+                      name="NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]"
+                      name="NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]"
+                      name="NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_como_voce_recomendaria_a_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_como_voce_recomendaria_a_Samsung]"
+                      name="NM_como_voce_recomendaria_a_Samsung"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns["Com base na sua experiência de serviço, como você recomendaria ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_precisa_de_suporte_adicional]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_precisa_de_suporte_adicional]"
+                      name="NM_precisa_de_suporte_adicional"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Precisa de algum suporte adicional? ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_EMPATIA_CI\Origem do Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Origem do Excel"
+              name="Origem do Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">'Respostas ao formulário 1$'</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="O mapeamento de parâmetros no comando SQL para variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel]"
+                  name="Saída de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Carimbo de data/hora]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Carimbo de data/hora]"
+                      name="Carimbo de data/hora"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[NOME ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[NOME ]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[NOME ]"
+                      name="NOME "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[OS ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[OS ]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[OS ]"
+                      name="OS "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[CONTATO TELEFÔNICO]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      name="CONTATO TELEFÔNICO"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      name="Os colaboradores da assistência técnica estavam uniformizados e "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      name="O ambiente da autorizada estava: limpo, iluminado, organizado e "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      name="No caso de celular, os testes iniciais do atendimento foram real"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      name="No caso de celular, foi oferecido conserto rápido ou reparo expr"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      name="O tempo previsto para reparo do produto foi cumprido pela assist"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      name="O atendimento na assistência técnica foi realizado de maneira ed"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      name="O atendente demonstrou atenção ao seu relato sobre o problema ap"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      name="O atendente levantou-se e identificou-se no momento que foi cham"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      name="Em caso de reparo fora de garantia, o preço do orçamento apresen"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Precisa de algum suporte adicional? ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Precisa de algum suporte adicional? ]"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].Columns[Precisa de algum suporte adicional? ]"
+                      name="Precisa de algum suporte adicional? "
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Carimbo de data/hora]"
+                      dataType="date"
+                      name="Carimbo de data/hora" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[NOME ]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOME " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[OS ]"
+                      dataType="r8"
+                      name="OS " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      length="255"
+                      name="CONTATO TELEFÔNICO" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Os colaboradores da assistência técnica estavam uniformizados e " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      dataType="wstr"
+                      length="255"
+                      name="O ambiente da autorizada estava: limpo, iluminado, organizado e " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      dataType="wstr"
+                      length="255"
+                      name="No caso de celular, os testes iniciais do atendimento foram real" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      dataType="wstr"
+                      length="255"
+                      name="No caso de celular, foi oferecido conserto rápido ou reparo expr" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      dataType="wstr"
+                      length="255"
+                      name="O tempo previsto para reparo do produto foi cumprido pela assist" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      dataType="wstr"
+                      length="255"
+                      name="O atendimento na assistência técnica foi realizado de maneira ed" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      dataType="wstr"
+                      length="255"
+                      name="O atendente demonstrou atenção ao seu relato sobre o problema ap" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      dataType="wstr"
+                      length="255"
+                      name="O atendente levantou-se e identificou-se no momento que foi cham" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      dataType="wstr"
+                      length="255"
+                      name="Em caso de reparo fora de garantia, o preço do orçamento apresen" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria " />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel].ExternalColumns[Precisa de algum suporte adicional? ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Precisa de algum suporte adicional? " />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Carimbo de data/hora]"
+                      dataType="date"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Carimbo de data/hora]"
+                      name="Carimbo de data/hora" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[NOME ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[NOME ]"
+                      name="NOME " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[OS ]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[OS ]"
+                      name="OS " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[CONTATO TELEFÔNICO]"
+                      name="CONTATO TELEFÔNICO" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Os colaboradores da assistência técnica estavam uniformizados e ]"
+                      name="Os colaboradores da assistência técnica estavam uniformizados e " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O ambiente da autorizada estava: limpo, iluminado, organizado e ]"
+                      name="O ambiente da autorizada estava: limpo, iluminado, organizado e " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[No caso de celular, os testes iniciais do atendimento foram real]"
+                      name="No caso de celular, os testes iniciais do atendimento foram real" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[No caso de celular, foi oferecido conserto rápido ou reparo expr]"
+                      name="No caso de celular, foi oferecido conserto rápido ou reparo expr" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O tempo previsto para reparo do produto foi cumprido pela assist]"
+                      name="O tempo previsto para reparo do produto foi cumprido pela assist" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendimento na assistência técnica foi realizado de maneira ed]"
+                      name="O atendimento na assistência técnica foi realizado de maneira ed" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendente demonstrou atenção ao seu relato sobre o problema ap]"
+                      name="O atendente demonstrou atenção ao seu relato sobre o problema ap" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[O atendente levantou-se e identificou-se no momento que foi cham]"
+                      name="O atendente levantou-se e identificou-se no momento que foi cham" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Em caso de reparo fora de garantia, o preço do orçamento apresen]"
+                      name="Em caso de reparo fora de garantia, o preço do orçamento apresen" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[&quot;Com base na sua experiência de serviço, como você recomendaria ]"
+                      name="&quot;Com base na sua experiência de serviço, como você recomendaria " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Precisa de algum suporte adicional? ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[Precisa de algum suporte adicional? ]"
+                      name="Precisa de algum suporte adicional? " />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="TB_STG_SAMS_BASE_EMPATIA_CI"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_STG_SAMS_BASE_EMPATIA_CI]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+                  connectionManagerRefId="Package.ConnectionManagers[brsbesrv960.DB_SAMSUNG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_carimbo_data]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_carimbo_data"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_carimbo_data]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_carimbo_data]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_nome]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_nome"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_nome]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_nome]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_os]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_os"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_os]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_os]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_contato]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_contato"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_contato]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_contato]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_como_voce_recomendaria_a_Samsung]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_como_voce_recomendaria_a_Samsung"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_como_voce_recomendaria_a_Samsung]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_como_voce_recomendaria_a_Samsung]" />
+                    <inputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].Columns[NM_precisa_de_suporte_adicional]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NM_precisa_de_suporte_adicional"
+                      externalMetadataColumnId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_precisa_de_suporte_adicional]"
+                      lineageId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[NM_precisa_de_suporte_adicional]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_carimbo_data]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_carimbo_data" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_nome]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_nome" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_os]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_os" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_contato]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_contato" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_colaboradores_da_assistencia_tecnica_estavam_uniformizados_e_com_cracha" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_ambiente_da_autorizada_estava_limpo_iluminado_organizado_e_temperatura_agradavel" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_celular_os_testes_iniciais_do_atendimento_foram_realizados_atraves_do_sistema_de_diagnostico" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_celular_foi_oferecido_conserto_rapido_ou_reparo_expresso_no_balcao_atendimento" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_tempo_previsto_para_reparo_do_produto_foi_cumprido_pela_assistencia_tecnica" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_atendimento_assistencia_tecnica_foi_realizado_de_maneira_educada_e_eficiente" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_atendente_demonstrou_atencao_ao_seu_relato_sobre_o_problema_apresentado" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_atendente_Se_identificou_no_momento_que_chamado_sua_senha_para_seu_atendimento" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_em_caso_de_reparo_fora_de_garantia_o_preco_do_orcamento_foi_justo" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_como_voce_recomendaria_a_Samsung]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_como_voce_recomendaria_a_Samsung" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB].ExternalColumns[NM_precisa_de_suporte_adicional]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NM_precisa_de_suporte_adicional" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA_EMPATIA_CI.Paths[Saída de Conversão de Dados]"
+              endId="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Conversão de Dados"
+              startId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\CARGA_EMPATIA_CI.Paths[Saída de Origem do Excel]"
+              endId="Package\CARGA_EMPATIA_CI\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem do Excel"
+              startId="Package\CARGA_EMPATIA_CI\Origem do Excel.Outputs[Saída de Origem do Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE_TB_STG_SAMS_BASE_EMPATIA_CI"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5FDE3240-02B9-4B3D-B3FE-8F9D52EF31F2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE_TB_STG_SAMS_BASE_EMPATIA_CI"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8709823B-11A4-4AE1-9C0B-9B182C8A4B84}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.TB_STG_SAMS_BASE_EMPATIA_CI" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{217A2257-1FF6-43B2-9B1E-5A90FA588EFB}"
+      DTS:From="Package\TRUNCATE_TB_STG_SAMS_BASE_EMPATIA_CI"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\CARGA_EMPATIA_CI" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\CARGA_EMPATIA_CI"
+          TopLeft="330,158" />
+        <NodeLayout
+          Size="304,42"
+          Id="Package\TRUNCATE_TB_STG_SAMS_BASE_EMPATIA_CI"
+          TopLeft="120,44" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="272,86">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147.5,72"
+              Start="0,0"
+              End="147.5,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="4,36" />
+                  <mssgle:LineSegment
+                    End="143.5,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143.5,36"
+                    Point2="147.5,36"
+                    Point3="147.5,40" />
+                  <mssgle:LineSegment
+                    End="147.5,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA_EMPATIA_CI">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\CARGA_EMPATIA_CI\Origem do Excel"
+          TopLeft="86,68" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\CARGA_EMPATIA_CI\Conversão de Dados"
+          TopLeft="227,148" />
+        <EdgeLayout
+          Id="Package\CARGA_EMPATIA_CI.Paths[Saída de Origem do Excel]"
+          TopLeft="165,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151,38"
+              Start="0,0"
+              End="151,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="147,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147,19"
+                    Point2="151,19"
+                    Point3="151,23" />
+                  <mssgle:LineSegment
+                    End="151,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="247,42"
+          Id="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI"
+          TopLeft="343,238" />
+        <EdgeLayout
+          Id="Package\CARGA_EMPATIA_CI.Paths[Saída de Conversão de Dados]"
+          TopLeft="316,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.5,48"
+              Start="0,0"
+              End="150.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="146.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.5,24"
+                    Point2="150.5,24"
+                    Point3="150.5,28" />
+                  <mssgle:LineSegment
+                    End="150.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_EMPATIA_CI\Origem do Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_EMPATIA_CI\TB_STG_SAMS_BASE_EMPATIA_CI">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

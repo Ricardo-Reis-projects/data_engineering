@@ -1,0 +1,2183 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/26/2019 10:45:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="L254577"
+  DTS:CreatorName="ATENTOBR\EST_608635"
+  DTS:DTSID="{64C0E7EC-950C-4F04-B390-9B6C0B689DBF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CARGA_NEX_PRODUTIVIDADE"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{6BEC3173-3321-4409-ABC9-7579C2D81F52}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRSBESRV1225.DBPR]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FCED12FF-5C58-4E05-8703-8E93F5A0A6C3}"
+      DTS:ObjectName="BRSBESRV1225.DBPR">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV1225;Initial Catalog=DBPR;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRSBESRV960.DB_QUINTO_ANDAR]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2046D904-0439-4CB8-9B9C-DF883C38AC7D}"
+      DTS:ObjectName="BRSBESRV960.DB_QUINTO_ANDAR">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRSBESRV960;Initial Catalog=DB_QUINTO_ANDAR;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA_O_NEX_PRODUTIVIDADE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D951E090-CDB6-4419-9860-5BAD12F38346}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA_O_NEX_PRODUTIVIDADE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server vNext CTP2.0; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2046D904-0439-4CB8-9B9C-DF883C38AC7D}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.PRC_QUINTO_ANDAR_NEX_PRODUTIVIDADE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CARGA_STG_NEX_PRODUTIVIDADE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{5E5B5054-AFE9-47C8-AAF8-5ACF1E474C9C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA_STG_NEX_PRODUTIVIDADE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="CONEXAO_BRSBESRV1225"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT A.[SK_DATA] 
+      ,A.[CD_RE]
+	  ,B.[DS_FUNCIONARIO_NOME]
+	  ,B.[DS_CLIENTE]
+	  ,B.[DS_PILAR_SAP]
+	  ,B.[DS_HIERARQUIA_SUPERVISOR_NOME]
+	  ,B.[DS_HIERARQUIA_COORDENADOR_NOME]
+	  ,B.[DS_HIERARQUIA_GESTOR_NOME]
+	  ,B.[DS_HIERARQUIA_GERENTE_NOME]
+	  ,B.[DS_HIERARQUIA_SUPERINTENDENTE_NOME]
+	  ,B.[DS_HIERARQUIA_DIRETOR_NOME]
+	  ,B.[DS_HIERARQUIA_VICEPRESIDENTE_NOME]
+      ,A.[CD_CHAMADA]
+      ,A.[DS_USUARIO_AVALIADOR]
+      ,A.[DT_INTERACTION]
+      ,A.[DT_INCLUSAO_MONITORIA]
+      ,COALESCE(NULLIF(A.[DS_PROGRAMA_WFM], '* NO WORKGROUP *'), B.DS_PROGRAMA, 'N/A') AS DS_PROGRAMA_WFM
+      ,A.[CD_CANAL]
+      ,A.[DT_ATENDIMENTO_INI]
+      ,A.[DT_ATENDIMENTO_FIM]
+      ,A.[DS_FICHA]      
+      ,A.[NM_AVG_PUBLISH_SEC]
+      ,A.[VL_NOTA]
+	  ,A.CD_ID AS CD_MONITORIA
+	  ,A.DS_PERFIL_AVALIADOR
+  FROM [DBPR].[dbo].[DW_O_NEX_PRODUTIVIDADE]	 A WITH(NOLOCK) INNER JOIN
+	   [DBDW].[dbo].[DW_D_CRO_HIERARQUIA_MENSAL] B WITH(NOLOCK)
+	ON (LEFT(A.SK_DATA, 6) = B.CD_MES
+	AND A.CD_RE = B.CD_RE)
+  WHERE [DS_CLIENTE] LIKE '%QUINTO%'</property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BRSBESRV1225.DBPR]"
+                  connectionManagerRefId="Package.ConnectionManagers[BRSBESRV1225.DBPR]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[SK_DATA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[SK_DATA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[SK_DATA]"
+                      name="SK_DATA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_RE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_RE]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_RE]"
+                      name="CD_RE"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_FUNCIONARIO_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]"
+                      name="DS_FUNCIONARIO_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_CLIENTE]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_CLIENTE]"
+                      name="DS_CLIENTE"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PILAR_SAP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PILAR_SAP]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PILAR_SAP]"
+                      name="DS_PILAR_SAP"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      name="DS_HIERARQUIA_SUPERVISOR_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      name="DS_HIERARQUIA_COORDENADOR_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_GESTOR_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      name="DS_HIERARQUIA_GESTOR_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_GERENTE_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      name="DS_HIERARQUIA_GERENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      name="DS_HIERARQUIA_SUPERINTENDENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      name="DS_HIERARQUIA_DIRETOR_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      name="DS_HIERARQUIA_VICEPRESIDENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CHAMADA]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_CHAMADA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CHAMADA]"
+                      name="CD_CHAMADA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_USUARIO_AVALIADOR]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]"
+                      name="DS_USUARIO_AVALIADOR"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INTERACTION]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_INTERACTION]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INTERACTION]"
+                      name="DT_INTERACTION"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_INCLUSAO_MONITORIA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]"
+                      name="DT_INCLUSAO_MONITORIA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PROGRAMA_WFM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PROGRAMA_WFM]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PROGRAMA_WFM]"
+                      name="DS_PROGRAMA_WFM"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CANAL]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_CANAL]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CANAL]"
+                      name="CD_CANAL"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_ATENDIMENTO_INI]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]"
+                      name="DT_ATENDIMENTO_INI"
+                      scale="7"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_ATENDIMENTO_FIM]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]"
+                      name="DT_ATENDIMENTO_FIM"
+                      scale="7"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FICHA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_FICHA]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FICHA]"
+                      name="DS_FICHA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_AVG_PUBLISH_SEC]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]"
+                      name="NM_AVG_PUBLISH_SEC"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[VL_NOTA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_NOTA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[VL_NOTA]"
+                      name="VL_NOTA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_MONITORIA]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_MONITORIA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_MONITORIA]"
+                      name="CD_MONITORIA"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PERFIL_AVALIADOR]"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]"
+                      name="DS_PERFIL_AVALIADOR"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[SK_DATA]"
+                      dataType="i4"
+                      name="SK_DATA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_RE]"
+                      dataType="i4"
+                      name="CD_RE" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_FUNCIONARIO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_FUNCIONARIO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PILAR_SAP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PILAR_SAP" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_SUPERVISOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_COORDENADOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_GESTOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_GESTOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_GERENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_GERENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_SUPERINTENDENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_DIRETOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_VICEPRESIDENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_CHAMADA]"
+                      dataType="i8"
+                      name="CD_CHAMADA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_USUARIO_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_USUARIO_AVALIADOR" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_INTERACTION]"
+                      dataType="dbDate"
+                      name="DT_INTERACTION" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_INCLUSAO_MONITORIA]"
+                      dataType="dbDate"
+                      name="DT_INCLUSAO_MONITORIA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PROGRAMA_WFM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PROGRAMA_WFM" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_CANAL]"
+                      dataType="i8"
+                      name="CD_CANAL" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_ATENDIMENTO_INI]"
+                      dataType="dbTimeStamp2"
+                      name="DT_ATENDIMENTO_INI"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DT_ATENDIMENTO_FIM]"
+                      dataType="dbTimeStamp2"
+                      name="DT_ATENDIMENTO_FIM"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_FICHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_FICHA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[NM_AVG_PUBLISH_SEC]"
+                      dataType="i8"
+                      name="NM_AVG_PUBLISH_SEC" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[VL_NOTA]"
+                      dataType="r8"
+                      name="VL_NOTA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[CD_MONITORIA]"
+                      dataType="i8"
+                      name="CD_MONITORIA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].ExternalColumns[DS_PERFIL_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PERFIL_AVALIADOR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[SK_DATA]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[SK_DATA]"
+                      name="SK_DATA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_RE]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_RE]"
+                      name="CD_RE" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]"
+                      name="DS_FUNCIONARIO_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_CLIENTE]"
+                      name="DS_CLIENTE" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PILAR_SAP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PILAR_SAP]"
+                      name="DS_PILAR_SAP" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      name="DS_HIERARQUIA_SUPERVISOR_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      name="DS_HIERARQUIA_COORDENADOR_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      name="DS_HIERARQUIA_GESTOR_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      name="DS_HIERARQUIA_GERENTE_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      name="DS_HIERARQUIA_SUPERINTENDENTE_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      name="DS_HIERARQUIA_DIRETOR_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      name="DS_HIERARQUIA_VICEPRESIDENTE_NOME" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_CHAMADA]"
+                      dataType="i8"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_CHAMADA]"
+                      name="CD_CHAMADA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]"
+                      name="DS_USUARIO_AVALIADOR" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_INTERACTION]"
+                      dataType="dbDate"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_INTERACTION]"
+                      name="DT_INTERACTION" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]"
+                      dataType="dbDate"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]"
+                      name="DT_INCLUSAO_MONITORIA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PROGRAMA_WFM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PROGRAMA_WFM]"
+                      name="DS_PROGRAMA_WFM" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_CANAL]"
+                      dataType="i8"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_CANAL]"
+                      name="CD_CANAL" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]"
+                      name="DT_ATENDIMENTO_INI"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]"
+                      name="DT_ATENDIMENTO_FIM"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_FICHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_FICHA]"
+                      name="DS_FICHA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]"
+                      dataType="i8"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]"
+                      name="NM_AVG_PUBLISH_SEC" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_NOTA]"
+                      dataType="r8"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[VL_NOTA]"
+                      name="VL_NOTA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_MONITORIA]"
+                      dataType="i8"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[CD_MONITORIA]"
+                      name="CD_MONITORIA" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]"
+                      name="DS_PERFIL_AVALIADOR" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[SK_DATA]"
+                      cachedDataType="i4"
+                      cachedName="SK_DATA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[SK_DATA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CD_RE]"
+                      cachedDataType="i4"
+                      cachedName="CD_RE"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_RE]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_FUNCIONARIO_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_FUNCIONARIO_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_CLIENTE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_CLIENTE"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_PILAR_SAP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PILAR_SAP"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PILAR_SAP]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_SUPERVISOR_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_COORDENADOR_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_GESTOR_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_GERENTE_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_SUPERINTENDENTE_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_DIRETOR_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_VICEPRESIDENTE_NOME"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CD_CHAMADA]"
+                      cachedDataType="i8"
+                      cachedName="CD_CHAMADA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CHAMADA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_USUARIO_AVALIADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_USUARIO_AVALIADOR"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DT_INTERACTION]"
+                      cachedDataType="dbDate"
+                      cachedName="DT_INTERACTION"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INTERACTION]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DT_INCLUSAO_MONITORIA]"
+                      cachedDataType="dbDate"
+                      cachedName="DT_INCLUSAO_MONITORIA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_PROGRAMA_WFM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PROGRAMA_WFM"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PROGRAMA_WFM]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CD_CANAL]"
+                      cachedDataType="i8"
+                      cachedName="CD_CANAL"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CANAL]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DT_ATENDIMENTO_INI]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="DT_ATENDIMENTO_INI"
+                      cachedScale="7"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DT_ATENDIMENTO_FIM]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="DT_ATENDIMENTO_FIM"
+                      cachedScale="7"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_FICHA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_FICHA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FICHA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[NM_AVG_PUBLISH_SEC]"
+                      cachedDataType="i8"
+                      cachedName="NM_AVG_PUBLISH_SEC"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[VL_NOTA]"
+                      cachedDataType="r8"
+                      cachedName="VL_NOTA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[VL_NOTA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CD_MONITORIA]"
+                      cachedDataType="i8"
+                      cachedName="CD_MONITORIA"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_MONITORIA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DS_PERFIL_AVALIADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PERFIL_AVALIADOR"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_DATA]"
+                      name="DS_DATA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[SK_DATA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_RE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_RE]"
+                      name="DS_RE"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_RE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FUNCIONARIO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FUNCIONARIO_NOME]"
+                      name="DS_FUNCIONARIO_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FUNCIONARIO_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CLIENTE]"
+                      name="DS_CLIENTE"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_CLIENTE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PILAR_SAP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PILAR_SAP]"
+                      name="DS_PILAR_SAP"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PILAR_SAP]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      name="DS_HIERARQUIA_SUPERVISOR_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      name="DS_HIERARQUIA_COORDENADOR_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      name="DS_HIERARQUIA_GESTOR_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      name="DS_HIERARQUIA_GERENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      name="DS_HIERARQUIA_SUPERINTENDENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      name="DS_HIERARQUIA_DIRETOR_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      name="DS_HIERARQUIA_VICEPRESIDENTE_NOME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CHAMADA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CHAMADA]"
+                      name="DS_CHAMADA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CHAMADA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_USUARIO_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_USUARIO_AVALIADOR]"
+                      name="DS_USUARIO_AVALIADOR"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_USUARIO_AVALIADOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INTERACTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INTERACTION]"
+                      name="DS_INTERACTION"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INTERACTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INCLUSAO_MONITORIA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INCLUSAO_MONITORIA]"
+                      name="DS_INCLUSAO_MONITORIA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_INCLUSAO_MONITORIA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PROGRAMA_WFM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PROGRAMA_WFM]"
+                      name="DS_PROGRAMA_WFM"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PROGRAMA_WFM]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CANAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CANAL]"
+                      name="DS_CANAL"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_CANAL]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_INI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_INI]"
+                      name="DS_ATENDIMENTO_INI"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_INI]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_FIM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_FIM]"
+                      name="DS_ATENDIMENTO_FIM"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DT_ATENDIMENTO_FIM]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FICHA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FICHA]"
+                      name="DS_FICHA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_FICHA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_AVG_PUBLISH_SEC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_AVG_PUBLISH_SEC]"
+                      name="DS_AVG_PUBLISH_SEC"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[NM_AVG_PUBLISH_SEC]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_NOTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_NOTA]"
+                      name="DS_NOTA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[VL_NOTA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_MONITORIA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_MONITORIA]"
+                      name="DS_MONITORIA"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[CD_MONITORIA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PERFIL_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="IgnoreFailure"
+                      length="255"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PERFIL_AVALIADOR]"
+                      name="DS_PERFIL_AVALIADOR"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB].Columns[DS_PERFIL_AVALIADOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="DW_STG_NEX_PRODUTIVIDADE"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[DW_STG_NEX_PRODUTIVIDADE]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BRSBESRV960.DB_QUINTO_ANDAR]"
+                  connectionManagerRefId="Package.ConnectionManagers[BRSBESRV960.DB_QUINTO_ANDAR]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_DATA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_DATA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_DATA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_DATA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_RE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_RE"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_RE]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_RE]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_INTERACTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_INTERACTION"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_INTERACTION]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INTERACTION]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_INCLUSAO_MONITORIA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_INCLUSAO_MONITORIA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_INCLUSAO_MONITORIA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_INCLUSAO_MONITORIA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_CANAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_CANAL"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CANAL]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CANAL]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_ATENDIMENTO_INI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_ATENDIMENTO_INI"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_ATENDIMENTO_INI]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_INI]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_ATENDIMENTO_FIM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_ATENDIMENTO_FIM"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_ATENDIMENTO_FIM]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_ATENDIMENTO_FIM]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_AVG_PUBLISH_SEC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_AVG_PUBLISH_SEC"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_AVG_PUBLISH_SEC]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_AVG_PUBLISH_SEC]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_NOTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_NOTA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_NOTA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_NOTA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_MONITORIA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_MONITORIA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_MONITORIA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_MONITORIA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_FUNCIONARIO_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_FUNCIONARIO_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_FUNCIONARIO_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FUNCIONARIO_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_CLIENTE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_CLIENTE"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CLIENTE]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_PILAR_SAP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PILAR_SAP"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PILAR_SAP]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PILAR_SAP]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_SUPERVISOR_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERVISOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_COORDENADOR_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_COORDENADOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_GESTOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_GESTOR_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_GESTOR_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GESTOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_GERENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_GERENTE_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_GERENTE_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_GERENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_SUPERINTENDENTE_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_DIRETOR_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_DIRETOR_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_HIERARQUIA_VICEPRESIDENTE_NOME"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_USUARIO_AVALIADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_USUARIO_AVALIADOR"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_USUARIO_AVALIADOR]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_USUARIO_AVALIADOR]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_CHAMADA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_CHAMADA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CHAMADA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_CHAMADA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_PROGRAMA_WFM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PROGRAMA_WFM"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PROGRAMA_WFM]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PROGRAMA_WFM]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_FICHA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_FICHA"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_FICHA]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_FICHA]" />
+                    <inputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].Columns[DS_PERFIL_AVALIADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DS_PERFIL_AVALIADOR"
+                      externalMetadataColumnId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PERFIL_AVALIADOR]"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[DS_PERFIL_AVALIADOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_DATA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_DATA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_RE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_RE" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_FUNCIONARIO_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_FUNCIONARIO_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PILAR_SAP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PILAR_SAP" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERVISOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_SUPERVISOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_COORDENADOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_COORDENADOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_GESTOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_GESTOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_GERENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_GERENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_SUPERINTENDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_SUPERINTENDENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_DIRETOR_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_DIRETOR_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_HIERARQUIA_VICEPRESIDENTE_NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_HIERARQUIA_VICEPRESIDENTE_NOME" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CHAMADA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_CHAMADA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_USUARIO_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_USUARIO_AVALIADOR" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_INTERACTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_INTERACTION" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_INCLUSAO_MONITORIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_INCLUSAO_MONITORIA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PROGRAMA_WFM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PROGRAMA_WFM" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_CANAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_CANAL" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_ATENDIMENTO_INI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_ATENDIMENTO_INI" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_ATENDIMENTO_FIM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_ATENDIMENTO_FIM" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_FICHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_FICHA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_AVG_PUBLISH_SEC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_AVG_PUBLISH_SEC" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_NOTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_NOTA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_MONITORIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_MONITORIA" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DS_PERFIL_AVALIADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DS_PERFIL_AVALIADOR" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA_STG_NEX_PRODUTIVIDADE.Paths[Saída de Conversão de Dados]"
+              endId="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Conversão de Dados"
+              startId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\CARGA_STG_NEX_PRODUTIVIDADE.Paths[Saída de Origem OLE DB]"
+              endId="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem OLE DB"
+              startId="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE_TB_STG_NEX_PRODUTIVIDADE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{00FB239E-D497-484B-8189-155420B2D86C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE_TB_STG_NEX_PRODUTIVIDADE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2046D904-0439-4CB8-9B9C-DF883C38AC7D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.DW_STG_NEX_PRODUTIVIDADE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{4ECD657D-2019-4113-9A63-31A48F2FCC6F}"
+      DTS:From="Package\TRUNCATE_TB_STG_NEX_PRODUTIVIDADE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\CARGA_STG_NEX_PRODUTIVIDADE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C755CF78-F443-49A2-92C0-6EBD2AD6028C}"
+      DTS:From="Package\CARGA_STG_NEX_PRODUTIVIDADE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\CARGA_O_NEX_PRODUTIVIDADE" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="252,42"
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE"
+          TopLeft="382,122" />
+        <NodeLayout
+          Size="289,42"
+          Id="Package\TRUNCATE_TB_STG_NEX_PRODUTIVIDADE"
+          TopLeft="55,39" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="199.5,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="308.5,41"
+              Start="0,0"
+              End="308.5,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="304.5,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="304.5,20.5"
+                    Point2="308.5,20.5"
+                    Point3="308.5,24.5" />
+                  <mssgle:LineSegment
+                    End="308.5,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="240,42"
+          Id="Package\CARGA_O_NEX_PRODUTIVIDADE"
+          TopLeft="207,214" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="508,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-181,50"
+              Start="0,0"
+              End="-181,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-177,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-177,25"
+                    Point2="-181,25"
+                    Point3="-181,29" />
+                  <mssgle:LineSegment
+                    End="-181,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA_STG_NEX_PRODUTIVIDADE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="236,42"
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE"
+          TopLeft="404,157" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225"
+          TopLeft="56,32" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE\Conversão de Dados"
+          TopLeft="346,39" />
+        <EdgeLayout
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE.Paths[Saída de Origem OLE DB]"
+          TopLeft="263,56.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="83,0"
+              Start="0,0"
+              End="75.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_STG_NEX_PRODUTIVIDADE.Paths[Saída de Conversão de Dados]"
+          TopLeft="434,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="88,76"
+              Start="0,0"
+              End="88,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="4,38" />
+                  <mssgle:LineSegment
+                    End="84,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="84,38"
+                    Point2="88,38"
+                    Point3="88,42" />
+                  <mssgle:LineSegment
+                    End="88,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_STG_NEX_PRODUTIVIDADE\DW_STG_NEX_PRODUTIVIDADE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_STG_NEX_PRODUTIVIDADE\CONEXAO_BRSBESRV1225">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
